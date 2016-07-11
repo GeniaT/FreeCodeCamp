@@ -1,0 +1,45 @@
+<!--Portfolio page, HTML part-->
+<html>
+  <head>
+  </head>
+  <body>
+    <div class="logoMenu">
+      <!--bootstrap 2 columns-->
+      <div class="logo">
+      </div>
+      <div class="menu">
+      </div>
+    </div>
+    <div class="aboutMe">
+      <!--bootstrap 2 columns-->
+      <div class="mytext">
+      </div>
+      <div class="mypics">
+      </div>
+    </div>
+    <div class="portfolio">
+      <div class="portfolioPieces">
+        <!--bootstrap 4 columns-->
+      </div>
+    </div>
+    <div class="myProfiles">
+    </div>
+    <div class="contactMe">
+      <!--bootstrap 2 columns-->
+      <div class="form">
+      </div>
+      <div class="textForm">
+      </div>
+    </div>
+    <div class="footer">
+      <!--bootstrap 2 columns-->
+      <div class="workingOn">
+      </div>
+      <div class="currentTopic">
+      </div>
+    </div>
+    <div class="copyright"></div>
+    
+    
+  </body>
+</html>
