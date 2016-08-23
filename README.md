@@ -1,3 +1,0 @@
-# FreeCodeCamp
-
-That's where I leave any code that may be usefull for me that was done during my work on FCC. Projects, algorithms, optimisations etc... 
