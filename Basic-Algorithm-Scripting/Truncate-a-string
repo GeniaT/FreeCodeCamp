@@ -1,14 +1,29 @@
 //We need to truncate a string based on the length max set in num argument.
-//str.substr could have been used aswell. 
 
 function truncateString(str, num) {
-  if (num>=str.length) {                         //no truncate if number bigger than the string
+  if (num>=str.length) { //no truncate if number bigger than the string
+  return str;
+} else if (num <= 3) {
+  str = str.slice(0,num) + "...";
   return str;
 } else {
-  str = (str.slice(0,num-3)+ "...");             //We make num-3 as we cant exceed num with our "..." addition
+  str = (str.slice(0,num-3)+ "...");//We make num-3 as we cant exceed num with our "..." addition
   return str;
 }
 }
-
 truncateString("A-tisket a-tasket A green and yellow basket", 11);
+
+
 //should return "A-tisket..." as this is a string of 11 length.
+//truncateString("A-", 1) should return "A...". ==> Not working for now
+//truncateString("Absolutely Longer", 2) should return "Ab...".
+
+/*
+Truncate a string (first argument) if it is longer than the given maximum string length
+(second argument). Return the truncated string with a ... ending.
+
+Note that inserting the three dots to the end will add to the string length.
+
+However, if the given maximum string length num is less than or equal to 3,
+then the addition of the three dots does not add to the string length in determining
+the truncated string. */
