@@ -1,0 +1,14 @@
+//We need to truncate a string based on the length max set in num argument.
+//str.substr could have been used aswell. 
+
+function truncateString(str, num) {
+  if (num>=str.length) {                         //no truncate if number bigger than the string
+  return str;
+} else {
+  str = (str.slice(0,num-3)+ "...");             //We make num-3 as we cant exceed num with our "..." addition
+  return str;
+}
+}
+
+truncateString("A-tisket a-tasket A green and yellow basket", 11);
+//should return "A-tisket..." as this is a string of 11 length.
