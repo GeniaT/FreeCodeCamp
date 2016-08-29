@@ -1,13 +1,13 @@
 //We need to truncate a string based on the length max set in num argument.
 
 function truncateString(str, num) {
-  if (num>=str.length) { //no truncate if number bigger than the string
+  if (num>=str.length) {                    //no truncate if number bigger than the string
   return str;
 } else if (num <= 3) {
   str = str.slice(0,num) + "...";
   return str;
 } else {
-  str = (str.slice(0,num-3)+ "...");//We make num-3 as we cant exceed num with our "..." addition
+  str = (str.slice(0,num-3)+ "...");        //We make num-3 as we cant exceed num with our "..." addition
   return str;
 }
 }
