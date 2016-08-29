@@ -1,0 +1,12 @@
+//We want here a bolean answer to know if "target" set as argument equals to the ending of the string. 
+//The other instruction was not to use endSwitch method.
+
+function confirmEnding(str, target) {
+result = target === (str.substr(-target.length,target.length)); //substr check a dynamic substring in the string starting 
+return result;                                                  //by the end and having the same length as the target. 
+}
+
+confirmEnding("Bastian", "n");                         //true
+confirmEnding("He has to give me a new name", "name"); //true
+confirmEnding("Open sesame", "same");                  //true
+confirmEnding("Open sesame", "pen");                   //false.
