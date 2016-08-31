@@ -1,0 +1,22 @@
+    /*
+    Return true if the string in the first element of the array contains all of the letters of the string in the second element of the array.
+    */
+    function mutation(arr) {
+      arr[0] = arr[0].toLowerCase();                 // so we can return true when checking "Hello" in "hello".
+      arr[1] = arr[1].toLowerCase();
+
+          for (i = 0; i < arr[1].length; i++) {      //we select each char for arg2 to then check if its in arg1 till the end of the arg2
+            if ( arr[0].indexOf(arr[1][i]) === -1) { //if it returns -1, that mean the character isn't in arg1
+              return false;
+            }
+          }
+          return true;
+    }
+    mutation(["hello", "hey"]);
+    
+/*
+mutation(["hello", "hey"]) should return false.
+mutation(["hello", "Hello"]) should return true.
+mutation(["zyxwvutsrqponmlkjihgfedcba", "qrstu"]) should return true.
+mutation(["Mary", "Army"]) should return true.
+*/
