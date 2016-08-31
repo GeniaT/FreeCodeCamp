@@ -1,0 +1,17 @@
+  /*
+  Remove all falsy values from an array.
+  Falsy values in JavaScript are false, null, 0, "", undefined, and NaN.
+  */
+    
+    function bouncer(arr) {
+      for (i = 0; i < arr.length; i++) {
+        if (new Boolean (arr[i])) === false {
+          arr = arr.slice(i,1);
+        }
+      }
+      return arr;
+    }
+    
+    bouncer([7, "ate", "", false, 9]);
+    
+    //01/09 remark: warning message "do not use a boolean as a constructor.
