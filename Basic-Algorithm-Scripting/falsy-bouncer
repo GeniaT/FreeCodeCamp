@@ -1,18 +1,18 @@
-    /*
+       /*
     Remove all falsy values from an array.
     Falsy values in JavaScript are false, null, 0, "", undefined, and NaN.
     */
 //Version 1: working in some scenarios only.====================================
     function bouncer(arr) {
-      var newArray = arr;
+      var newArray = arr; // We let the arr untouched and modify the newArray.
       for (i = 0; i < arr.length; i++) {
         if (arr[i]) {
           //got nothing to do... would like to avoid the else but don't know how here.
         } else {
-        newArray.splice(i,i+1);
+        newArray.splice(i,i+1); // We want to cut off the falsy values.
         }
       }
-      console.log(newArray);
+      return newArray;
     }
 
     bouncer([7, "ate", "", false, 9]);
@@ -27,7 +27,7 @@
 
 //Version 2: Using filter this time. ===========================================
 
-        /* Example that works fine: 
+        /* Example that works fine:
         var x = undefined;             // can be NaN, 0, "", false also.
         if (x) {
           console.log("True part");
