@@ -1,8 +1,10 @@
-       /*
+    /*
     Remove all falsy values from an array.
     Falsy values in JavaScript are false, null, 0, "", undefined, and NaN.
     */
 //Version 1: working in some scenarios only.====================================
+//Version 2 works for all cases, see below.
+    /*
     function bouncer(arr) {
       var newArray = arr; // We let the arr untouched and modify the newArray.
       for (i = 0; i < arr.length; i++) {
@@ -18,6 +20,8 @@
     bouncer([7, "ate", "", false, 9]);
     bouncer([false, null, 0, NaN, undefined, ""]);
 
+    */
+
     /*
     bouncer([7, "ate", "", false, 9]) should return [7, "ate", 9]. // not ok
     bouncer(["a", "b", "c"]) should return ["a", "b", "c"].        // OK
@@ -25,7 +29,25 @@
     bouncer([1, null, NaN, 2, undefined]) should return [1, 2].    // OK
     */
 
-//Version 2: Using filter this time. ===========================================
+//Version 2: Using filter this time & works for all cases. =====================
+function bouncer(arr) {
+  var newArray = arr; // We let the arr untouched and modify the newArray.
+  for (i = 0; i < arr.length; i++) {
+    if (arr[i]) {
+      //got nothing to do... would like to avoid the else but don't know how here.
+    } else {
+      newArray = arr.filter(function(val) { //As we are in the else already, we want nothing more than filter the actual value.
+      return val;
+    });
+    }
+  }
+  return newArray;
+}
+
+bouncer([7, "ate", "", false, 9]);             //OK
+bouncer([false, null, 0, NaN, undefined, ""]); //OK
+
+//END of VERSION 2. ============================================================
 
         /* Example that works fine:
         var x = undefined;             // can be NaN, 0, "", false also.
