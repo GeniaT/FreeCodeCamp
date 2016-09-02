@@ -1,0 +1,56 @@
+/*
+You will be provided with an initial array (the first argument in the destroyer
+function), followed by one or more arguments. Remove all elements from the
+initial array that are of the same value as these arguments.
+*/
+
+/*
+console.log(arr[0]+arr[1]+arr[2]);// abc, can't select like this d & e.
+console.log(arguments[0]); //gives ["a","b","c"]
+console.log(arguments[1]); //gives b (4th char)
+console.log(arguments[2]); //gives e
+*/
+//VERSION 1: solves the problem but number of arguments written manually.=======
+/*
+var newArray = [];
+function destroyer(arr) {
+  var x = arguments[1];
+  var y = arguments[2];
+  var z = arguments[3];
+  newArray = arr.filter(function(val){
+
+  //  return (val !== "b");          //returns ["a","c"]
+  //  return (val !== arguments[1]); // returns ["a","b","c"] /!\ SCOPE, arguments[1] is unkown here
+      return ((val !== x) && (val !== y) && (val!== z)); // return ["a"] weee
+  });
+  return newArray;
+}
+
+destroyer([1, 2, 3, 1, 2, 3], 2, 3)               // return [1, 1].
+destroyer([1, 2, 3, 5, 1, 2, 3], 2, 3)            // return [1, 5, 1].
+destroyer([3, 5, 1, 2, 2], 2, 3, 5)               // return [1].
+destroyer([2, 3, 2, 3], 2, 3)                     // return [].
+destroyer(["tree", "hamburger", 53], "tree", 53)  // return ["hamburger"]
+*/
+//END of VERSION 1 =============================================================
+
+// Version 2 more optimized - not written by me (source @Rafase282)=============
+function destroyer(arr) {
+  var args = Array.prototype.slice.call(arguments); // convert the arr to a real array :[1, 2, 3, 1, 2, 3], 2, 3
+  console.log(args);                                // becomes [[1, 2, 3, 1, 2, 3], 2, 3]
+  args.slice(0,1);                                  //Remove first arg as we dont need it args = [2,3]
+  return arr.filter(function(element) {
+    return args.indexOf(element) === -1;//filter out the elements that are on the array and keep the ones that are not.
+  });
+}
+
+destroyer([1, 2, 3, 1, 2, 3], 2, 3)               // return [1, 1].
+/*destroyer([1, 2, 3, 5, 1, 2, 3], 2, 3)            // return [1, 5, 1].
+destroyer([3, 5, 1, 2, 2], 2, 3, 5)               // return [1].
+destroyer([2, 3, 2, 3], 2, 3)                     // return [].
+destroyer(["tree", "hamburger", 53], "tree", 53) */ // return ["hamburger"]
+
+var basket = ['apple','orange','banana','strawberry'];
+console.log(basket.indexOf("apple") != -1); // returns true
+
+//OPEN POINT: get how exactly works the line 43 "return args.indexOf(element) === -1;"
