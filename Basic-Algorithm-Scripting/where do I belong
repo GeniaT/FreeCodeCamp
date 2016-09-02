@@ -1,34 +1,60 @@
-/*
-Return the lowest index at which a value (second argument) should be inserted
-into an array (first argument) once it has been sorted. The returned value
-should be a number.
+    /*
+    Return the lowest index at which a value (second argument) should be inserted
+    into an array (first argument) once it has been sorted. The returned value
+    should be a number.
 
-For example, getIndexToIns([1,2,3,4], 1.5) should return 1
-because it is greater than 1 (index 0), but less than 2 (index 1).
-Likewise, getIndexToIns([20,3,5], 19) should return 2 because once the array has
-been sorted it will look like [3,5,20] and 19 is less than 20 (index 2) and
-greater than 5 (index 1).
-*/
-function getIndexToIns(arr, num) {
-  var args = Array.prototype.slice.call(arguments);
-  var numToMove = arguments[1];
-  console.log(args);
-  args[0] = args[0].split(" ");
-  console.log(args);
-  return num;
-}
+    For example, getIndexToIns([1,2,3,4], 1.5) should return 1
+    because it is greater than 1 (index 0), but less than 2 (index 1).
+    Likewise, getIndexToIns([20,3,5], 19) should return 2 because once the array has
+    been sorted it will look like [3,5,20] and 19 is less than 20 (index 2) and
+    greater than 5 (index 1).
+    */
+//VERSION 1: with for loop, works partially====================================================
+    /*
+    function getIndexToIns(arr, num) {
+      var args = Array.prototype.slice.call(arguments);      //We create an array with all arguments of the fct
+      //var numToMove = arguments[1];
+      var interArray = [];                                   //Array that we later will check the index from
 
-getIndexToIns([40, 60], 50);
+      for (var i = 0 ; i < arguments[0].length ; i++) {      //separating each string inside the array [1,2,3] becomes [[1][2][3]]
+        var block = arguments[0].slice(i, i + 1);
+        interArray.push(block);
+    }
 
+    interArray.push(num);                                   //Now that the arg0 is sliced, we add the num in the array
 
+    interArray = interArray.sort(function(a, b) {           //fct used to sort from low to high (b - a from high to low)
+       return a - b;
+     });
+     console.log(interArray);
+     console.log(interArray.indexOf(num));                       //Once sorted, take the index of the number defined in the starting fct that we just pushed in the array
+  }
+    //getIndexToIns([40, 60], 50); // returns 1 ok
+    //getIndexToIns([10, 20, 30, 40, 50], 35)// should return 3. ok
+    getIndexToIns([10, 20, 30, 40, 50], 30) //should return 2. nok
+    //getIndexToIns([40, 60], 50)// should return 1.ok
+    getIndexToIns([3, 10, 5], 3) //should return 0. nok returns 1
+    getIndexToIns([5, 3, 20, 3], 5) //should return 2.nok
+    //getIndexToIns([2, 20, 10], 19) //should return 2. ok
+    //getIndexToIns([2, 5, 10], 15) //should return 3. ok
+    */
+//END of Version 1==============================================================
 
+//Version 2 without for loop as it's not needed=================================
+//IMPORTANT : slice method is necessary as we can't sort arguments. We first have to convert arguments into an array object. <<<<<<<<<<<<<<<<<<<<
+    function getIndexToIns(arr, num) {
+      var args = Array.prototype.slice.call(arguments);       //We create an array with all arguments of the fct
+      var toSort = args[0];
+      //console.log(args);
+      toSort.push(args[1]);
+      //console.log(toSort);
+    toSort = toSort.sort(function(a, b) {                     //fct used to sort from low to high (b - a from high to low)
+       return a - b;
+     });
+     //console.log(toSort);
+     return toSort.indexOf(num);                       //Once sorted, take the index of the number defined in the starting fct that we just pushed in the array
+    }
 
-//store the 2nd argument in a variable
-//create an array with both arguments : use slice in a for loop
-//sort them from lowest to highest
-//get the index of the variable declared in the beginning
-
-/*
-array.sort(function(a, b) { //to use when the array is made of substrings
-   return a - b;
- });*/
+    getIndexToIns([10, 20, 30, 40, 50], 30)                  //should return 2. ok
+    getIndexToIns([3, 10, 5], 3)                             //should return 0. ok
+    getIndexToIns([5, 3, 20, 3], 5)                          //should return 2. ok
