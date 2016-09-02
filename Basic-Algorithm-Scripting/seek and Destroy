@@ -50,7 +50,8 @@ destroyer([3, 5, 1, 2, 2], 2, 3, 5)               // return [1].
 destroyer([2, 3, 2, 3], 2, 3)                     // return [].
 destroyer(["tree", "hamburger", 53], "tree", 53) */ // return ["hamburger"]
 
+/*
 var basket = ['apple','orange','banana','strawberry'];
 console.log(basket.indexOf("apple") != -1); // returns true
-
+*/
 //OPEN POINT: get how exactly works the line 43 "return args.indexOf(element) === -1;"
