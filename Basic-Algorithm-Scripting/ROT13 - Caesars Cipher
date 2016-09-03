@@ -1,0 +1,27 @@
+    /*decode and encode strings, https://en.wikipedia.org/wiki/ROT13. 
+    We get a str as input and encode or decode it by adding or removing a number from each character's ASCII code
+    
+    function rot13(str) { 
+      var newArray = [];
+      for (i = 0; i < str.length; i++) { //check each character of the string and see if we modify it or not and how
+        if ((str.charCodeAt(i)>=65) && (str.charCodeAt(i)<=77)) {                 //If A to M, then add 13
+          newArray.push((String.fromCharCode((str.charCodeAt(i))+13)));           //push the modified character to newArray
+          console.log(newArray);
+        } else if ((str.charCodeAt(i)>77) && (str.charCodeAt(i)<=90)) {           //If N to Z, remove 13
+          newArray.push((String.fromCharCode((str.charCodeAt(i))-13))); 
+          console.log(newArray);
+        } else {
+          newArray.push(String.fromCharCode(str.charCodeAt(i)));
+          console.log(newArray);
+        }
+      }
+      var joinedString = newArray.join("");                                       // We create a final string with the array
+      return joinedString;
+    }
+    
+    /*
+    rot13("SERR PBQR PNZC") should decode to "FREE CODE CAMP"
+    rot13("SERR CVMMN!") should decode to "FREE PIZZA!"
+    rot13("SERR YBIR?") should decode to "FREE LOVE?"
+    rot13("GUR DHVPX OEBJA QBT WHZCRQ BIRE GUR YNML SBK.") should decode to "THE QUICK BROWN DOG JUMPED OVER THE LAZY FOX." 
+    */
