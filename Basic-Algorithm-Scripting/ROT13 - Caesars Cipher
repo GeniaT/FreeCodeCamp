@@ -1,27 +1,70 @@
-    /*decode and encode strings, https://en.wikipedia.org/wiki/ROT13. 
-    We get a str as input and encode or decode it by adding or removing a number from each character's ASCII code
-    
-    function rot13(str) { 
+/* Write a function which takes a ROT13 encoded string as input and returns a decoded string.
+All letters will be uppercase. Do not transform any non-alphabetic character
+(i.e. spaces, punctuation), but do pass them on.*/
+
+/*SOLUTION in a few words: Starting from the given string, we will chechk each character's code
+and remplace it by another character code (+13 or -13 or nothing) to push the associated character
+to our newArray that we will join at the end */
+
+//VERSION 1 working! but not clean==============================================
+  /*
+    function rot13(str) {
       var newArray = [];
-      for (i = 0; i < str.length; i++) { //check each character of the string and see if we modify it or not and how
-        if ((str.charCodeAt(i)>=65) && (str.charCodeAt(i)<=77)) {                 //If A to M, then add 13
-          newArray.push((String.fromCharCode((str.charCodeAt(i))+13)));           //push the modified character to newArray
+      for (i = 0; i < str.length; i++) {
+        if ((str.charCodeAt(i)>=65) && (str.charCodeAt(i)<=77)) { //If A to M, then add 13
+          newArray.push((String.fromCharCode((str.charCodeAt(i))+13)));
           console.log(newArray);
-        } else if ((str.charCodeAt(i)>77) && (str.charCodeAt(i)<=90)) {           //If N to Z, remove 13
-          newArray.push((String.fromCharCode((str.charCodeAt(i))-13))); 
+        } else if ((str.charCodeAt(i)>77) && (str.charCodeAt(i)<=90)) { //If N to Z, remove 13
+          newArray.push((String.fromCharCode((str.charCodeAt(i))-13)));
           console.log(newArray);
         } else {
           newArray.push(String.fromCharCode(str.charCodeAt(i)));
           console.log(newArray);
         }
       }
-      var joinedString = newArray.join("");                                       // We create a final string with the array
+      var joinedString = newArray.join(""); // We create a final string with the array
       return joinedString;
     }
-    
-    /*
-    rot13("SERR PBQR PNZC") should decode to "FREE CODE CAMP"
-    rot13("SERR CVMMN!") should decode to "FREE PIZZA!"
-    rot13("SERR YBIR?") should decode to "FREE LOVE?"
-    rot13("GUR DHVPX OEBJA QBT WHZCRQ BIRE GUR YNML SBK.") should decode to "THE QUICK BROWN DOG JUMPED OVER THE LAZY FOX." 
     */
+//Version 2: =================================================================
+function rot13(str) {
+  var newArray = [];
+  var joinedString = newArray.join("");              // We create a final string with the array
+
+  for (i = 0; i < str.length; i++) {
+    var charCodes = str.charCodeAt(i);
+    var toRot13 = 13;
+    var newCharToArray = function toArr() {         //It has to be a function and not just a var x=newArray.push...
+      newArray.push((String.fromCharCode((charCodes)+toRot13)));
+    }
+
+    if ((charCodes>=65) && (charCodes<=77)) {       //If A to M, then add 13
+      newCharToArray();
+    } else if ((charCodes>77) && (charCodes<=90)) { //If N to Z, remove 13
+      var toRot13 = -13;
+      newCharToArray();
+    } else {
+      var toRot13 = 0;
+      newCharToArray();
+    }
+  }
+  console.log(joinedString);
+  return (joinedString);
+}
+//END OF VERSION 2==============================================================
+    rot13("SERR PBQR PNZC") // "FREE CODE CAMP"
+    rot13("SERR CVMMN!") // "FREE PIZZA!"
+    rot13("SERR YBIR?") // "FREE LOVE?"
+    rot13("GUR DHVPX OEBJA QBT WHZCRQ BIRE GUR YNML SBK.") // "THE QUICK BROWN DOG JUMPED OVER THE LAZY FOX."
+
+/*
+var x = "ABCDEFGHIJKLM"; //65 to 77
+var y = "NOPQRSTUVWXYZ"; //78 to 90
+*/
+
+//scenario 1: if 65 to 77 then remplace par 65 to 77 + 13
+//scenario 2: if 78 to 90 then remplace par 78 to 90 - 13
+//scenario 3: if <65 or >90, do nothing.
+
+//ABC'.charCodeAt(0); // returns 65
+//String.fromCharCode(65, 66, 67);  // "ABC"
