@@ -32,3 +32,41 @@ $(document).ready(function() {
       });
     });
   });
+
+
+=======================================================================================================
+
+//To just get the raw content in a string from the API, the following code is used:
+<script>
+  $(document).ready(function() {
+
+    $("#getMessage").on("click", function(){
+      // Only change code below this line.
+     $.getJSON("/json/cats.json", function(json) {             //Adress of API+ what we do with it. just add the string of the 
+      $(".message").html(JSON.stringify(json));                //content to the html. 
+     }); 
+      
+      
+      // Only change code above this line.
+    });
+
+  });
+</script>
+
+<div class="container-fluid">
+  <div class = "row text-center">
+    <h2>Cat Photo Finder</h2>
+  </div>
+  <div class = "row text-center">
+    <div class = "col-xs-12 well message">
+      The message will go here
+    </div>
+  </div>
+  <div class = "row text-center">
+    <div class = "col-xs-12">
+      <button id = "getMessage" class = "btn btn-primary">
+        Get Message
+      </button>
+    </div>
+  </div>
+</div>
