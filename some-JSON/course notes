@@ -9,7 +9,7 @@ if (navigator.geolocation) {
 $(document).ready(function() {
 
     $("#getMessage").on("click", function() {
-      $.getJSON("/json/cats.json", function(json) {
+      $.getJSON("/json/cats.json", function(json) {  //The complete address where the data is is https://www.freecodecamp.com/json/cats.json
 
         var html = "";
         //To prefilter the image you don't want, for example with ID 1, use the following instruction before the loop:
