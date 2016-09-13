@@ -1,17 +1,16 @@
 $(document).ready(function() {
   $('.newQuote').on('click', function () {
-    $.getJSON('http://quotes.rest/qod.json', function(json) {
-      //$('#apiQuote').html(JSON.stringify(json));//Takes API data and add it to html as a string
-      var html = "";
-      json.forEach(function(val) {
-        var keys = Object.keys(val);
-        html += "<div class = 'cat'>";
-        keys.forEach(function(key){
-          html += "<strong>" + key + "</strong>: " + val[key] + "<br>";
-        });
-        html += "</div><br>";
-      });
-      $(".message").html(html);
+    $.getJSON('http://quotes.rest/qod.json', function(data) {
+      console.log(data);                          //Testing the data from API.
+      console.log(data.contents.quotes[0].quote); //testing a specific part of the data. 
     });
   });
 });
+
+
+
+
+
+
+//continue on https://www.smashingmagazine.com/2012/02/beginners-guide-jquery-based-json-api-clients/
+//There is shown how to get a specific data from API "complex" objects.
