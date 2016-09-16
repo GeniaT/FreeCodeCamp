@@ -11,20 +11,39 @@ $(document).ready(function() {
 
 //With JSONP but originally with Cross-Origin error even with "callback=?"
 $(document).ready(function() {
+  $.ajax ({ //Getting the quote directly when loading the page
+    type: 'GET',
+    url: 'http://api.forismatic.com/api/1.0/?method=getQuote&format=jsonp&lang=en&jsonp=jsonp_callback', //jsonp=jsonp_callback the API required to specify the callback function name
+    dataType: "jsonp",
+    jsonp: 'callback',                                                            //Here we define the callback function name that is now insterted in the URL
+    jsonpCallback: 'jsonp_callback',
+    success: function (data) {
+      var apiQuote = $('#apiQuote');
+      //console.log(data);                                                        //The raw data is now displayed and we can work with it.
+      //console.log(data.quoteText + "- " + data.quoteAuthor);                    //Intermediate Test
+      document.getElementById("apiQuote").innerHTML = "";                         //Clearing the content if a previous quote is there
+      apiQuote.append(data.quoteText + " - " + data.quoteAuthor);
+      var tweetUrl = "https://twitter.com/intent/tweet?button_hashtag=GreatQuotes&text="+ data.quoteText + " - " + data.quoteAuthor;
+      $(".twitter-hashtag-button").attr('href', tweetUrl);                        //Replace the href of the node having the twitter class with tweetUrl
+    },
+    error: function () {
+      alert("Error loading a new Quote, sorry!");
+    }
+});
+
   $('.newQuote').on('click', function() {
     $.ajax ({
       type: 'GET',
-      //url: 'http://api.forismatic.com/api/1.0/?method=getQuote&format=jsonp&lang=en&callback=?',
-      url: 'http://api.forismatic.com/api/1.0/?method=getQuote&format=jsonp&lang=en&jsonp=jsonp_callback', //jsonp=jsonp_callback the API required to specify the callback function name
+      url: 'http://api.forismatic.com/api/1.0/?method=getQuote&format=jsonp&lang=en&jsonp=jsonp_callback',
       dataType: "jsonp",
-      jsonp: 'callback',                                                            //Here we define the callback function name that is now insterted in the URL
+      jsonp: 'callback',
       jsonpCallback: 'jsonp_callback',
       success: function (data) {
         var apiQuote = $('#apiQuote');
-        //console.log(data);                                                        //The raw data is now displayed and we can work with it.
-        //console.log(data.quoteText + "- " + data.quoteAuthor);                    //Intermediate Test
-        document.getElementById("apiQuote").innerHTML = "";                         //Clearing the content if a previous quote is there
+        document.getElementById("apiQuote").innerHTML = "";
         apiQuote.append(data.quoteText + " - " + data.quoteAuthor);
+        var tweetUrl = "https://twitter.com/intent/tweet?button_hashtag=GreatQuotes&text="+ data.quoteText + " - " + data.quoteAuthor;
+        $(".twitter-hashtag-button").attr('href', tweetUrl);
       },
       error: function () {
         alert("Error loading a new Quote, sorry!");
@@ -32,6 +51,12 @@ $(document).ready(function() {
     });
   });
 });
+
+FB.ui({
+  method: 'feed',
+  link: 'https://developers.facebook.com/docs/',
+  caption: 'An example caption',
+}, function(response){});
 
 /* /!\ USEFULL GENERAL INFO:
 1/ When selecting data from API, check if you go through an object or array:
