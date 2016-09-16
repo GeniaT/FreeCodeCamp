@@ -52,12 +52,6 @@ $(document).ready(function() {
   });
 });
 
-FB.ui({
-  method: 'feed',
-  link: 'https://developers.facebook.com/docs/',
-  caption: 'An example caption',
-}, function(response){});
-
 /* /!\ USEFULL GENERAL INFO:
 1/ When selecting data from API, check if you go through an object or array:
 //Example : data.contents.quotes[0].quote (data is the root of the whole JSON call, contents is object and quotes is array.)
