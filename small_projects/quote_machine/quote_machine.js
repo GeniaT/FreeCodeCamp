@@ -50,6 +50,23 @@ $(document).ready(function() {
       }
     });
   });
+  $('.bookmark').on('click', function() {                                       //Logic of feeding the top 3 div, the most recent favorite goes up.
+    if ($(".top2").html()!=="") {                                               //check if top2 class is empty
+      $(".top3").html($(".top2").html());                                       //top3 gets the content of top2
+      $(".top2").html($(".top1").html());                                       //top2 gets the content of top1
+      $(".top1").html($("#apiQuote").html());                                   //top1 gets the content of apiQUote
+    } else if ($(".top1").html()!=="") {
+      $(".top2").html($(".top1").html());
+      $(".top1").html($("#apiQuote").html());
+    } else if ($(".top1").html() ==="") {
+    $(".top1").html($("#apiQuote").html());
+    }
+  });
+  $('.delete').on('click', function() { //Cleaning the top 3 quotes. 
+    $(".top1").empty();
+    $(".top2").empty();
+    $(".top3").empty();
+  });
 });
 
 /* /!\ USEFULL GENERAL INFO:
@@ -59,4 +76,9 @@ $(document).ready(function() {
 3/The url build is important and never the same. It's specific to each API.
 4/ callback function "callback=?" can be enough in JSON for cross-origin errors but not in jsonp where we need to create a name for the callback
 function, then declare and use it.
+*/
+
+/*Nice to have
+- FB, Instagram, LinkedIn buttons for sharing the quote
+- When clicking favorite, make a transition for right div update with the new quote going to the first place
 */
