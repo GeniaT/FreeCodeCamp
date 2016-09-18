@@ -7,22 +7,28 @@
   <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
 </head>
 <body>
+  <!--START FB script for sharing/feed options-->
+
+  <!--END FB script for sharing/feed options-->
   <h1>Random Quote Machine!</h1>
   <p id="apiQuote"></p>
 
   <a href="https://twitter.com/" class="twitter-hashtag-button" data-show-count="false"> <!--set the # and text of choice in url -->
-    <button class="tweeter">Tw</button>
+    <button class="tweeter">Twitter</button>
   </a>
   <a>
-    <button class="facebook">FB</button>
-  </a>
-  <a>
-    <button class="instagram">Insta</button>
+    <button class="bookmark">Bookmark!</button>
   </a>
 
   <button class="newQuote">New Quote</button><br>
+  <div class="topQuotes">
+    <h3>My Top 3 quotes</h3>
+    <div class="top1"></div>
+    <div class="top2"></div>
+    <div class="top3"></div>
+  </div>
   <p class="signature">By Genia</p>
-  
+
   <script src="../Random_Quote_Machine/quote_machine.js" type="text/javascript"></script>
   <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script> <!--for quote retweet-->
 </body>
