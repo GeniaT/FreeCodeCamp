@@ -1,16 +1,5 @@
-/* WITH JSON: No Cross-origin error but data from API is obsolete
-$(document).ready(function() {
-  $('.newQuote').on('click', function () {
-    $.getJSON('http://api.forismatic.com/api/1.0/?method=getQuote&format=json&lang=en&callback=?', function(data) {
-      console.log(data);
-      console.log(data.quoteText + "- " + data.quoteAuthor);
-    });
-  });
-});
-*/
-
-//With JSONP but originally with Cross-Origin error even with "callback=?"
-$(document).ready(function() {
+//With JSONP.  Originally with Cross-Origin error when callback was set as "callback=?"
+function getQuote() {
   $.ajax ({ //Getting the quote directly when loading the page
     type: 'GET',
     url: 'http://api.forismatic.com/api/1.0/?method=getQuote&format=jsonp&lang=en&jsonp=jsonp_callback', //jsonp=jsonp_callback the API required to specify the callback function name
@@ -30,25 +19,13 @@ $(document).ready(function() {
       alert("Error loading a new Quote, sorry!");
     }
 });
+}
+
+$(document).ready(function() {
+  getQuote();
 
   $('.newQuote').on('click', function() {
-    $.ajax ({
-      type: 'GET',
-      url: 'http://api.forismatic.com/api/1.0/?method=getQuote&format=jsonp&lang=en&jsonp=jsonp_callback',
-      dataType: "jsonp",
-      jsonp: 'callback',
-      jsonpCallback: 'jsonp_callback',
-      success: function (data) {
-        var apiQuote = $('#apiQuote');
-        document.getElementById("apiQuote").innerHTML = "";
-        apiQuote.append(data.quoteText + " - " + data.quoteAuthor);
-        var tweetUrl = "https://twitter.com/intent/tweet?button_hashtag=GreatQuotes&text="+ data.quoteText + " - " + data.quoteAuthor;
-        $(".twitter-hashtag-button").attr('href', tweetUrl);
-      },
-      error: function () {
-        alert("Error loading a new Quote, sorry!");
-      }
-    });
+    getQuote();
   });
   $('.bookmark').on('click', function() {                                       //Logic of feeding the top 3 div, the most recent favorite goes up.
     if ($(".top2").html()!=="") {                                               //check if top2 class is empty
@@ -62,10 +39,8 @@ $(document).ready(function() {
     $(".top1").html($("#apiQuote").html());
     }
   });
-  $('.delete').on('click', function() { //Cleaning the top 3 quotes. 
-    $(".top1").empty();
-    $(".top2").empty();
-    $(".top3").empty();
+  $('.delete').on('click', function() {                                         //Cleaning the top 3 quotes.
+    $(".top1, .top2, .top3").empty();
   });
 });
 
@@ -76,9 +51,18 @@ $(document).ready(function() {
 3/The url build is important and never the same. It's specific to each API.
 4/ callback function "callback=?" can be enough in JSON for cross-origin errors but not in jsonp where we need to create a name for the callback
 function, then declare and use it.
+      5/WITH JSON: No Cross-origin error but data from API was obsolete
+      $(document).ready(function() {
+        $('.newQuote').on('click', function () {
+          $.getJSON('http://api.forismatic.com/api/1.0/?method=getQuote&format=json&lang=en&callback=?', function(data) {
+            console.log(data);
+            console.log(data.quoteText + "- " + data.quoteAuthor);
+          });
+        });
+      });
+6/...
 */
 
 /*Nice to have
 - FB, Instagram, LinkedIn buttons for sharing the quote
-- When clicking favorite, make a transition for right div update with the new quote going to the first place
 */
