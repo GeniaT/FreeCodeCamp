@@ -8,7 +8,7 @@
 @media (min-width: @screen-lg-min) { ... }
 
 body {
-    background-color: lightblue;
+    background-color: pink;
     margin-top:5%;
 }
 
