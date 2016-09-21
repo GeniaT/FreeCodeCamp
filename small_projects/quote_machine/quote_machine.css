@@ -14,15 +14,29 @@ body {
 
 h1 {
   text-align:center;
+  padding-bottom: 100px;
 }
-.topQuotes, .quoteWindow, .buttons {
+.topQuotes, .quoteWindow, .buttons, .lead {
   border:solid 1px black;
 }
 
+.top, h3, .delete {
+  margin: 25px;
+}
 .quoteWindow, .topQuotes {
-  display:inline-block;
-  margin-left:10%;
-  margin-right:10%;
+  max-width: 500px;
+  margin:auto;
+}
+.buttons {
+  max-width: 500px;
 }
 
-/*Back to code*/
+ .signature {
+   text-align: center;
+   padding-top: 25px;
+ }
+
+.newQuote {
+  position:relative;
+  float:right;
+}
