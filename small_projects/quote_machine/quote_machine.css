@@ -23,20 +23,34 @@ h1 {
 .top, h3, .delete {
   margin: 25px;
 }
-.quoteWindow, .topQuotes {
-  max-width: 500px;
-  margin:auto;
+
+.row {
+  border:solid 1px black;
 }
-.buttons {
+.quoteWindow, .topQuotes, .buttons {
   max-width: 500px;
 }
 
+.quoteWindow {
+  vertical-align: middle;
+}
  .signature {
    text-align: center;
    padding-top: 25px;
  }
 
-.newQuote {
-  position:relative;
-  float:right;
+
+
+/*Copy paste from dunno where for test:*/
+.row-centered {
+    text-align:center;
+}
+
+
+.col-centered {
+    display:inline-block;
+    float:none;
+
+    text-align:left;
+    margin-right:-4px;
 }
