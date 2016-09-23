@@ -31,17 +31,17 @@ h1 {
   max-width: 500px;
 }
 
-.quoteWindow {
-  vertical-align: middle;
+.newQuote {
+  float:right;
 }
+
  .signature {
    text-align: center;
    padding-top: 25px;
  }
 
 
-
-/*Copy paste from dunno where for test:*/
+/*Makes the two columns horizontally centered */
 .row-centered {
     text-align:center;
 }
@@ -53,4 +53,19 @@ h1 {
 
     text-align:left;
     margin-right:-4px;
+}
+
+/*make the left colum content go in the middle of the screen and not at the bottom of the row in the beginning*/
+.container-fluid {
+  position:relative;
+}
+
+.quoteWindow {
+  position:static;
+  margin-top: -200px;
+}
+
+/* make the quote stay in the middle, with all buttons staying aligned*/
+.lead {
+  font-size:40px;
 }
