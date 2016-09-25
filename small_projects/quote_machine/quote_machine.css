@@ -8,7 +8,7 @@
 @media (min-width: @screen-lg-min) { ... }
 
 body {
-    background-color: pink;
+    background-color: #49AAEB;
     margin-top:5%;
 }
 
@@ -16,16 +16,14 @@ h1 {
   text-align:center;
   padding-bottom: 100px;
 }
-.topQuotes, .quoteWindow {
+
+/*
+.topQuotes, .quoteWindow, .row {
   border:solid 1px black;
 }
-
+*/
 .top, h3, .delete {
   margin: 25px;
-}
-
-.row {
-  border:solid 1px black;
 }
 
 .quoteWindow, .topQuotes, .buttons {
@@ -57,19 +55,20 @@ h1 {
 
 .topQuotes {
   margin:auto;
+  padding-top:5px;
+  background:#85C3ED;
+  border-radius:10px;
 }
-/*Try to center both columns from the sides*/
+
 .col-lg-6 {
-  background:green;
+  /*background:green;*/
   height:550px;
 }
 
-.column1 {
-  background:gray;
+#apiQuote { /*To hide to quote before giving it a slow show method in jquery*/
+  display: none;
 }
 
-.column2 {
-  background:yellow;
+h3, h1, p, .signature {
+  color:white;
 }
-
-.

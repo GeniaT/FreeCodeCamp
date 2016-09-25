@@ -12,6 +12,7 @@ function getQuote() {
       //console.log(data.quoteText + "- " + data.quoteAuthor);                    //Intermediate Test
       document.getElementById("apiQuote").innerHTML = "";                         //Clearing the content if a previous quote is there
       apiQuote.append(data.quoteText + " - " + data.quoteAuthor);
+      apiQuote.show('slow');
       var tweetUrl = "https://twitter.com/intent/tweet?button_hashtag=GreatQuotes&text="+ data.quoteText + " - " + data.quoteAuthor;
       $(".twitter-hashtag-button").attr('href', tweetUrl);                        //Replace the href of the node having the twitter class with tweetUrl
     },
@@ -25,8 +26,11 @@ $(document).ready(function() {
   getQuote();
 
   $('.newQuote').on('click', function() {
+    var apiQuote = $('#apiQuote');                                              //Declaring here so I can hide it before showing another quote
+    apiQuote.hide();
     getQuote();
   });
+
   $('.bookmark').on('click', function() {                                       //Logic of feeding the top 3 div, the most recent favorite goes up.
     if ($(".top2").html()!=="") {                                               //check if top2 class is empty
       $(".top3").html($(".top2").html());                                       //top3 gets the content of top2
@@ -39,6 +43,7 @@ $(document).ready(function() {
     $(".top1").html($("#apiQuote").html());
     }
   });
+  
   $('.delete').on('click', function() {                                         //Cleaning the top 3 quotes.
     $(".top1, .top2, .top3").empty();
   });
