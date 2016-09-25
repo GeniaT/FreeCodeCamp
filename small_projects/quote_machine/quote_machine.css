@@ -41,6 +41,9 @@ h1 {
   font-size:20px;
 }
 
+.newQuote {
+  float:right;
+}
 /* Trying to get the new quote centered with TOP2 OK */
 .column1 {
   position:relative;
