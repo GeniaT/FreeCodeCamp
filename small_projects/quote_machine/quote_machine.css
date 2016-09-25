@@ -16,7 +16,7 @@ h1 {
   text-align:center;
   padding-bottom: 100px;
 }
-.topQuotes, .quoteWindow, .buttons, .lead {
+.topQuotes, .quoteWindow {
   border:solid 1px black;
 }
 
@@ -27,12 +27,9 @@ h1 {
 .row {
   border:solid 1px black;
 }
+
 .quoteWindow, .topQuotes, .buttons {
   max-width: 500px;
-}
-
-.newQuote {
-  float:right;
 }
 
  .signature {
@@ -40,32 +37,36 @@ h1 {
    padding-top: 25px;
  }
 
-
-/*Makes the two columns horizontally centered */
-.row-centered {
-    text-align:center;
+.lead {
+  font-size:20px;
 }
 
-
-.col-centered {
-    display:inline-block;
-    float:none;
-
-    text-align:left;
-    margin-right:-4px;
-}
-
-/*make the left colum content go in the middle of the screen and not at the bottom of the row in the beginning*/
-.container-fluid {
+/* Trying to get the new quote centered with TOP2 OK */
+.column1 {
   position:relative;
 }
 
-.quoteWindow {
-  position:static;
-  margin-top: -200px;
+.quoteWindow { /*Aligned ok full screen but bug when window reduced*/
+  position:absolute;
+  margin-top:150px;
+  margin-left: 150px;
 }
 
-/* make the quote stay in the middle, with all buttons staying aligned*/
-.lead {
-  font-size:40px;
+.topQuotes {
+  margin:auto;
 }
+/*Try to center both columns from the sides*/
+.col-lg-6 {
+  background:green;
+  height:550px;
+}
+
+.column1 {
+  background:gray;
+}
+
+.column2 {
+  background:yellow;
+}
+
+.
