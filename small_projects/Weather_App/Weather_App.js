@@ -1,6 +1,6 @@
 $(document).ready(function() {
   $('.weather').on('click', function () {
-    $.getJSON('http://api.openweathermap.org/data/2.5/weather?id=2802960&APPID=e0ee1fd0698ca554514e35d77c06ae12', function(data) {
+    $.getJSON('http://api.openweathermap.org/data/2.5/weather?id=2802960&APPID=e0ee1fd0698ca554514e35d77c06ae12', function(data) { //id=city ID and APPID = user API ID
       console.log(data);
       console.log("City: " + data.name);
       console.log("Country: " + data.sys.country);
@@ -14,6 +14,23 @@ $(document).ready(function() {
     });
   });
 });
+
+//Getting the current location of the user
+var x = document.getElementById("demo");
+
+function getLocation() {
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(showPosition);
+    } else {
+        x.innerHTML = "Geolocation is not supported by this browser.";
+    }
+}
+
+//And insert the localisation it in HTML file
+function showPosition(position) {
+    x.innerHTML = "Latitude: " + position.coords.latitude +
+    "<br>Longitude: " + position.coords.longitude;
+}
 
 
 /* To call the API, works with JSONP aswell with following code:
