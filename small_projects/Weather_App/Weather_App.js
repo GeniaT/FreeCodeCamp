@@ -30,7 +30,8 @@ $(document).ready(function() {
       //Kelvin K -273,15= Temp in C°
       //Kelvin K -459,67= Temp in F°
       console.log(data.weather[0].icon);
-      var iconUrl = "http://openweathermap.org/img/w/" + data.weather[0].icon +".png"; //Building the url to get the right pic for the weather
+      var iconUrl = "http://openweathermap.org/img/w/" + data.weather[0].icon +".png" //Building the url to get the right pic for the weather
+      //document.getElementById("weatherImage").innerHTML = "<img src=" + iconUrl + "/>";
       console.log(iconUrl);
     });
   });
