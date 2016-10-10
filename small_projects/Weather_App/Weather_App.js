@@ -26,7 +26,7 @@ $(document).ready(function() {
       console.log("Weather: " + data.weather[0].main);
       document.getElementById("weather").innerHTML = data.weather[0].main;
       console.log("Temperature in Kelvin K: " + data.main.temp);
-      document.getElementById("temperature").innerHTML = data.main.temp + "°K";
+      document.getElementById("temperature").innerHTML = data.main.temp + " <a href='#' class='tempFormat'>K°</a>";
       //Kelvin K -273,15= Temp in C°
       //Kelvin K -459,67= Temp in F°
       console.log(data.weather[0].icon);
@@ -35,7 +35,15 @@ $(document).ready(function() {
       console.log(iconUrl);
     });
   });
+
+  $(".tempFormat").on('click', function (event) {
+    event.preventDefault();
+    document.getElementById("temperature").innerHTML = (-273,15) + " <a href='' class='tempFormat'>C°</a>";
+  });
+
 });
+
+
 
 
 
