@@ -1,5 +1,7 @@
 var lat;
 var lon;
+var cTemp;
+var kTemp;
 function getLocation() {
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(showPosition);
@@ -16,9 +18,14 @@ function showPosition(position) {
 
 $(document).ready(function() {
   getLocation();
-  $('.weather').on('click', function () {
+  $('.wToday').on('click', function () {
     //Now that we have our location with lat and lon variables, we build the link for calling weather API
     $.getJSON('http://api.openweathermap.org/data/2.5/weather?lat='+lat+'&lon='+lon+'&APPID=e0ee1fd0698ca554514e35d77c06ae12', function(data) { // APPID = user API ID
+      var kTemp = data.main.temp;
+      var fTemp = (kTemp)*(9/5)-459.67;                                         //We receive the degrees in kelvin.
+      var cTemp = kTemp - 273;                                                  //And we need to toggle between Fareneit and Celsius
+      var swapToggle = true; // To be able to switch this var to false when clicked & reverse
+
       console.log(data);
       console.log("City: " + data.name);
       document.getElementById("location").innerHTML = data.name + ", " + data.sys.country;
@@ -26,9 +33,23 @@ $(document).ready(function() {
       console.log("Weather: " + data.weather[0].main);
       document.getElementById("weather").innerHTML = data.weather[0].main;
       console.log("Temperature in Kelvin K: " + data.main.temp);
-      document.getElementById("temperature").innerHTML = data.main.temp + " K°";
-      //Kelvin K -273,15= Temp in C°
-      //Kelvin K -459,67= Temp in F°
+      //document.getElementById("temperature").innerHTML = data.main.temp + " K°";
+      document.getElementById("temperature").innerHTML = (Math.floor(fTemp) + " F°");
+
+      $("#temperature").click(function(){
+        if (swapToggle === true) { //It has to be a tripe === here
+          $("#temperature").html(Math.floor(cTemp) + " <a> C°</a>"); //Math.floor to avoid many decimals
+          swapToggle = false;//dont set "var swapToggle" since we want to modify locally the value
+        } else {
+          $("#temperature").html(Math.floor(fTemp) + "<a> F°</a>");
+          swapToggle = true;
+        }
+      });
+
+
+
+
+
       console.log(data.weather[0].icon);
       var iconUrl = "http://openweathermap.org/img/w/" + data.weather[0].icon +".png" //Building the url to get the right pic for the weather
       //document.getElementById("weatherImage").innerHTML = "<img src=" + iconUrl + "/>";
@@ -61,3 +82,6 @@ function getQuote() {
 }
 
 getQuote();*/
+
+//What can be improved: var declarations, jQuery use (instead of getElementById etc, and innerHTML, rather use jquery $("...").html)
+//Better start by testing core functionalities instead of creating bundaries with html divs. That should come last.
