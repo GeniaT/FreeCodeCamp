@@ -1,10 +1,9 @@
 body {
-  background-color:#f4d142;
+  background-color:#f4ad42;
 }
 .container,.wToday {
   text-align:center;
   margin-top:200px;
-  background-color:#f4ad42;
 }
 
 .container {
@@ -33,14 +32,13 @@ body {
   color:white;
 }
 
+
 h1, .signature {
   color:white;
   padding-top:30px;
 }
 
-.btn {
-  color:white;
-}
+
 a {
   text-decoration:none;
   color:#428cf4;

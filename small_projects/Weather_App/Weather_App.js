@@ -26,15 +26,15 @@ $(document).ready(function() {
       var cTemp = kTemp - 273;                                                  //And we need to toggle between Fareneit and Celsius
       var swapToggle = true; // To be able to switch this var to false when clicked & reverse
 
-      console.log(data);
-      console.log("City: " + data.name);
+      //console.log(data);
+      //console.log("City: " + data.name);
       document.getElementById("location").innerHTML = data.name + ", " + data.sys.country;
-      console.log("Country: " + data.sys.country);
-      console.log("Weather: " + data.weather[0].main);
+      //console.log("Country: " + data.sys.country);
+      //console.log("Weather: " + data.weather[0].main);
       document.getElementById("weather").innerHTML = data.weather[0].main;
-      console.log("Temperature in Kelvin K: " + data.main.temp);
+      //console.log("Temperature in Kelvin K: " + data.main.temp);
       //document.getElementById("temperature").innerHTML = data.main.temp + " K°";
-      document.getElementById("temperature").innerHTML = (Math.floor(fTemp) + "<a> F°</a>");
+      document.getElementById("temperature").innerHTML = (Math.floor(fTemp) + "<a> F°</a>");//.toFixed(2) will also reduce the number of digits
 
       $("#temperature").click(function(){
         if (swapToggle === true) { //It has to be a tripe === here
@@ -46,14 +46,18 @@ $(document).ready(function() {
         }
       });
 
+//Logic to modify the image according to the weather
+      if (data.weather[0].main === "Rain") {
+        $("body").css("background-image","url(https://images.alphacoders.com/201/201751.jpg)");
+      } else if (data.weather[0].main === "Clouds") {
+        $("body").css("background-image","url(http://freebigpictures.com/wp-content/uploads/2009/09/stratocumulus.jpg)");
+      } else if (cTemp < 0) {
+        $("body").css("background-image","url(http://www.firsthdwallpapers.com/uploads/2013/07/Antarctica-Ice-Cave.jpg)");
+      } else if (cTemp > 25) {
+        $("body").css("background-image","url(https://wallpaperscraft.com/image/desert_cactuses_outlines_sun_decline_evening_figures_8999_1920x1080.jpg)");
+      }
 
 
-
-
-      console.log(data.weather[0].icon);
-      var iconUrl = "http://openweathermap.org/img/w/" + data.weather[0].icon +".png" //Building the url to get the right pic for the weather
-      //document.getElementById("weatherImage").innerHTML = "<img src=" + iconUrl + "/>";
-      console.log(iconUrl);
     });
   });
 
