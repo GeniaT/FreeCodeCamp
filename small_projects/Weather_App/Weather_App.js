@@ -34,7 +34,7 @@ $(document).ready(function() {
       document.getElementById("weather").innerHTML = data.weather[0].main;
       console.log("Temperature in Kelvin K: " + data.main.temp);
       //document.getElementById("temperature").innerHTML = data.main.temp + " K°";
-      document.getElementById("temperature").innerHTML = (Math.floor(fTemp) + " F°");
+      document.getElementById("temperature").innerHTML = (Math.floor(fTemp) + "<a> F°</a>");
 
       $("#temperature").click(function(){
         if (swapToggle === true) { //It has to be a tripe === here
