@@ -1,3 +1,18 @@
 a:link {
     text-decoration: none;
 }
+
+.article {
+  min-height:100px;
+  padding: 15px;
+}
+
+a {
+  display:block; /*so we can click the whole area*/
+  min-height:100px;
+  background-color:yellow;
+}
+
+.randomArt {
+  height:20px;
+}
