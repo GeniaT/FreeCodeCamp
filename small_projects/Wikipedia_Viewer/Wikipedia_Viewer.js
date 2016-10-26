@@ -1,8 +1,7 @@
-
-var userInput = $("#searchTerm").val(); //Allows to get the data from the input value set by the user
-var urlForAjax = 'https://en.wikipedia.org/w/api.php?action=opensearch&search=' + userInput + '&format=json&callback=?';
-
 function getWiki() {
+
+  var userInput = $("#searchTerm").val(); //Allows to get the data from the input value set by the user
+  var urlForAjax = 'https://en.wikipedia.org/w/api.php?action=opensearch&search=' + userInput + '&format=json&callback=?';
 
 $.ajax({
   type: "GET",
@@ -25,12 +24,9 @@ $.ajax({
 
 $(document).ready(function() {
 
-
-$('.inp').click(function () {
-  var userInput = $("#searchTerm").val(); //Allows to get the data from the input value set by the user
-  var urlForAjax = 'https://en.wikipedia.org/w/api.php?action=opensearch&search=' + userInput + '&format=json&callback=?';
-
-  getWiki();
-});
+  $('.inp').click(function () {
+    $(".10articles").empty(); //Clearing the articles from the page to append new ones.
+    getWiki();
+  });
 
 });
