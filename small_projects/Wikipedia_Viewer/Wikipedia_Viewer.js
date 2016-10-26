@@ -1,20 +1,9 @@
 function getWiki() {
 $.ajax({
   type: 'GET',
-  url: 'https://en.wikipedia.org/w/api.php?action=opensearch&search=%22tennis%22&format=json&callback=?%22', //'//en.wiktionary.org/w/api.php',
+  url: 'https://en.wikipedia.org/w/api.php?action=opensearch&search=%22tennis%22&format=json&callback=?%22',
   dataType: 'jsonp',
   success: function (data) {
-/*
-    console.log("1:");
-    console.log(data[1][0]);
-    console.log(data[2][0]);
-    console.log(data[3][0]);
-
-    console.log("2:");
-    console.log(data[1][1]);
-    console.log(data[2][1]);
-    console.log(data[3][1]);
-*/
 
     for (var i = 0; i < 10; i++) {
 
@@ -23,9 +12,23 @@ $.ajax({
       var description = data[2][i];
       $(".10articles").append("<div class='article'><a href=" + url + " target='_blank'>" + title + "</br>" + "<div class='description'>" + description + "</div>" + "</a></div>");
     }
-
   }
 });
 };
+
+function fromSearchBox () {
+  var frm = document.getElementById('inp');
+  var userInput = frm.value;
+  var urlForAjax;
+  if (frm) {
+    var urlForAjax=("https://en.wikipedia.org/w/api.php?action=opensearch&search=%22" + userInput + "%22&format=json&callback=?%22");
+    $('form').attr('action', frm.action); //now that the action link is known, we push it to html
+  }
+}
+
+$('.inp').on('click', function () {
+  var urlForAjax;
+  fromSearchBox();
+});
 
 getWiki();
