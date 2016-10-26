@@ -21,7 +21,7 @@ $.ajax({
       var url = data[3][i];
       var title = data[1][i];
       var description = data[2][i];
-      $(".10articles").append("<div class='article'><a href=" + url + " target='_blank'>" + title + "</br>" + description + "</a></div>");
+      $(".10articles").append("<div class='article'><a href=" + url + " target='_blank'>" + title + "</br>" + "<div class='description'>" + description + "</div>" + "</a></div>");
     }
 
   }

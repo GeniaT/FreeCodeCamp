@@ -11,8 +11,28 @@ a {
   display:block; /*so we can click the whole area*/
   min-height:100px;
   background-color:yellow;
+  padding:10px;
+}
+
+.container > a { /*To isolate the first link style from others*/
+  display:inline-block;
+  min-height:20px;
+  margin-left: 15px;
+  padding:0;
 }
 
 .randomArt {
   height:20px;
+}
+
+form {
+  margin:15px;
+}
+
+.input {
+  margin-top:15px;
+}
+
+.description {
+  padding:20px;
 }
