@@ -1,15 +1,15 @@
 function getWiki() {
 
   var userInput = $("#searchTerm").val(); //Allows to get the data from the input value set by the user
-  var urlForAjax = 'https://en.wikipedia.org/w/api.php?action=opensearch&search=' + userInput + '&format=json&callback=?';
+  var url = 'https://en.wikipedia.org/w/api.php?action=opensearch&search=' + userInput + '&format=json&callback=?';
 
 $.ajax({
   type: "GET",
-  url: urlForAjax,
+  url: url,
   dataType: "jsonp",
   success: function (data) {
 
-    for (var i = 0; i < 10; i++) {
+    for (var i = 0; i < 10; i++) { //Loop to run through the data and be able to create 10 sub divs.
       var url = data[3][i];
       var title = data[1][i];
       var description = data[2][i];
