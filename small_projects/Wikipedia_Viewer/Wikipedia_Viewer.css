@@ -1,36 +1,54 @@
-a:link {
-    text-decoration: none;
+.container {
+  background-color: #b6cbed;
+  text-align:center;
 }
 
+h1 {
+  color:white;
+}
+
+.randomArt {
+  font-size:20px;
+}
+
+.inp {
+  margin-bottom:20px;
+}
 .article {
+  display:block;
   min-height:100px;
+  background-color:white;
+  border-radius: 7px;
+  margin:10px;
   padding: 15px;
-}
-
-a {
-  display:block; /*so we can click the whole area*/
-  min-height:100px;
-  background-color:yellow;
-  padding:10px;
 }
 
 .container > a { /*To isolate the first link style from others*/
   display:inline-block;
   min-height:20px;
-  margin-left: 15px;
+  margin-top: 40px;
+  margin-bottom:25px;
   padding:0;
 }
 
-.randomArt {
-  height:20px;
-}
-
-
-
 input {
   margin:15px;
+  display:inline;
 }
 
+.input-group {
+    width: 300px;
+    margin:auto;
+    margin-bottom:30px;
+}
 .description {
-  padding:20px;
+  padding:1px;
+}
+
+div > a:hover {
+  text-decoration:none;
+}
+
+.signature {
+  margin:30px;
 }
