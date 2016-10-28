@@ -12,7 +12,7 @@ h1 {
 }
 
 .inp {
-  margin-bottom:20px;
+  /*margin-bottom:20px;*/
 }
 .article {
   display:block;
@@ -32,7 +32,7 @@ h1 {
 }
 
 input {
-  margin:15px;
+  /*margin:15px;*/
   display:inline;
 }
 
@@ -40,6 +40,7 @@ input {
     width: 300px;
     margin:auto;
     margin-bottom:30px;
+    display:inline;
 }
 .description {
   padding:1px;
