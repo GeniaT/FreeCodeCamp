@@ -1,0 +1,36 @@
+.container {
+  text-align:center;
+}
+
+.col1 {
+    background-color: yellow;
+}
+
+.col2 {
+    background-color: gray;
+}
+
+.col3 {
+    background-color: green;
+}
+
+.col4 {
+    background-color: blue;
+}
+
+img {
+  width:55px;
+  height:55px;
+}
+
+.headerRow {
+  min-height: 70px;
+}
+
+.streamer, .description {
+  height: 55px;
+}
+
+p {
+  vertical-align: middle;
+}

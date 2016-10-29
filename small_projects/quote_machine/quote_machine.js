@@ -43,7 +43,7 @@ $(document).ready(function() {
     $(".top1").html($("#apiQuote").html());
     }
   });
-  
+
   $('.delete').on('click', function() {                                         //Cleaning the top 3 quotes.
     $(".top1, .top2, .top3").empty();
   });
