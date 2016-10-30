@@ -1,3 +1,6 @@
+html body { /*A way to overwrite the default background color set by Twitter bootstrap library. */
+    background-color: rgb(226, 255, 237);
+}
 .container {
   text-align:center;
 }
@@ -20,17 +23,24 @@
 
 img {
   width:55px;
-  height:55px;
+  height:auto; /*Setting auto align the height with the width automatically here*/
+  border-radius: 25%;
+  padding-top: 7px;
 }
 
 .headerRow {
   min-height: 70px;
 }
 
-.streamer, .description {
-  height: 55px;
+.streamer, .description, .col2 {
+  height: 69px;
 }
 
-p {
-  vertical-align: middle;
+p, a { /*Best way to align vertically a one line text in a div. Doesn't work with multiple line text*/
+  height: 69px;
+  line-height: 69px;
+}
+
+.row {
+  padding-top:5px;
 }
