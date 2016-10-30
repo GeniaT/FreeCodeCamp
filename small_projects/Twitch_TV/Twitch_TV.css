@@ -44,3 +44,8 @@ p, a { /*Best way to align vertically a one line text in a div. Doesn't work wit
 .row {
   padding-top:5px;
 }
+
+/*CSS for streamer status color update*/
+.online  {background-color:#bbfcba;}
+.offline {background-color:#78a7ed;}
+.error   {background-color:#c97062;}

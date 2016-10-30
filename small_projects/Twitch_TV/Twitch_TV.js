@@ -9,28 +9,35 @@ var apiStreamCall = ["https://api.twitch.tv/kraken/streams/proleaguecsgo","https
 
 var channels = ["proleaguecsgo","imaqtpie","kevinho90","playhearthstone","freecodecamp","dota2ruhub","blizzard","cohhcarnage","comster404"];
 
-$.ajax({
- type: 'GET',
- //The url for various stream check is this format: url: 'https://api.twitch.tv/kraken/streams/ + "end of a stream visitor url" like "esl_LoL" from https://www.twitch.tv/esl_lol
- url: apiStreamCall[8], //Once the function works, create a loop to go through the urls array.
- headers: {
-   'Client-ID': 'f8xpjswqdd4dvy82cqqpxgxhohjt0wx'                               //Key that you get registering your app on twitch.
- },
- success: function(data) {
-   var status;
-   console.log(data);
-   console.log(data.stream);
-   if (data.stream === null) { //Check if channel online or not
-     var status = "Offline";
-     console.log("This channel is offline at the moment");
-   } else {
-     var status = data.stream.channel.status; //Takes the current title of the streaming channel
-     var logo = data.stream.channel.logo;
-     console.log("Lucky you, it's online!");
-     console.log(status);
+for (var i = 0; i < apiStreamCall.length; i++) {
+
+  $.ajax({
+   type: 'GET',
+   //The url for various stream check is this format: url: 'https://api.twitch.tv/kraken/streams/ + "end of a stream visitor url" like "esl_LoL" from https://www.twitch.tv/esl_lol
+   url: apiStreamCall[i], //Once the function works, create a loop to go through the urls array.
+   headers: {
+     'Client-ID': 'f8xpjswqdd4dvy82cqqpxgxhohjt0wx'                               //Key that you get registering your app on twitch.
+   },
+   success: function(data) {
+     var status;
+     console.log(data);
+     console.log(data.stream);
+     if (data.stream === null) { //Check if channel online or not
+       var status = "offline";
+       console.log("This channel is offline at the moment");
+     } else {
+       var status = data.stream.channel.status; //Takes the current title of the streaming channel
+       var logo = data.stream.channel.logo;
+       console.log(status);
+     }
+   },
+   error: function () {
+     var whichRowToUpdate = ".row" + (i-1); //This var will help us to select the right row to add a class in.
+     console.log("This streamer does not exist");
+     $(document).ready(function() {
+        $(whichRowToUpdate).find(".col").addClass("error"); //According to the loop number, we select the right row to add a class in and apply the css on it automatically.
+     });
+
    }
- },
- error: function () {
-   console.log("This streamer does not exist");
- }
-});
+  });
+}
