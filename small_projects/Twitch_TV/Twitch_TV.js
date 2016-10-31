@@ -11,6 +11,8 @@ var channels = ["proleaguecsgo","imaqtpie","kevinho90","playhearthstone","freeco
 
 $(document).ready(function() {
 for (var i = 0; i < apiStreamCall.length; i++) {
+  var rowToUpdate = ".row" + (i);                                               //This var will help us to select the right row to add a class in.
+  var description = $(rowToUpdate).find(".description");                        //This var is mandatory as I can't use find + append in same instruction
 
   $.ajax({
    type: 'GET',
@@ -22,26 +24,20 @@ for (var i = 0; i < apiStreamCall.length; i++) {
    },
    success: function(data) {
      var status;
-     var rowToUpdate;
+
 
      if (data.stream === null) { //Check if channel online or not
        var status = "offline";
-       var rowToUpdate = ".row" + (i);                                          //This var will help us to select the right row to add a class in.
-       var description = $(rowToUpdate).find(".description");                   //This var is mandatory as I can't use find + append in same instruction
-          $(rowToUpdate).find(".col").addClass("offline");                      //According to the loop number, we select the right row to add a class in and apply the css on it automatically.
-          $(description).append("<p>Offline</p>");
+       $(rowToUpdate).find(".col").addClass("offline");           //According to the loop number, we select the right row to add a class in and apply the css on it automatically.
+       $(description).append("<p>Offline</p>");
      } else {
        var status = data.stream.channel.status;                                 //Takes the current title of the streaming channel
-       var rowToUpdate = ".row" + (i);
-       var description = $(rowToUpdate).find(".description");
        $(rowToUpdate).find(".col").addClass("online");
        $(description).append("<p>" + status + "</p>");
      }
    },
 
    error: function () {
-     var rowToUpdate = ".row" + (i);
-     var description = $(rowToUpdate).find(".description");
     $(rowToUpdate).find(".col").addClass("error");
     $(description).append("<p>Streamer doesn't exist</p>");
    }
