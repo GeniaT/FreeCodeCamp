@@ -5,22 +5,6 @@ html body { /*A way to overwrite the default background color set by Twitter boo
   text-align:center;
 }
 
-.col1 {
-    background-color: yellow;
-}
-
-.col2 {
-    background-color: gray;
-}
-
-.col3 {
-    background-color: green;
-}
-
-.col4 {
-    background-color: blue;
-}
-
 img {
   width:55px;
   height:auto; /*Setting auto align the height with the width automatically here*/
@@ -32,6 +16,9 @@ img {
   min-height: 70px;
 }
 
+.header {
+  padding-bottom:25px;
+}
 .streamer, .description, .col2 {
   height: 69px;
 }
@@ -39,10 +26,6 @@ img {
 p, a { /*Best way to align vertically a one line text in a div. Doesn't work with multiple line text*/
   height: 69px;
   line-height: 69px;
-}
-
-.row {
-  padding-top:5px;
 }
 
 /*CSS for streamer status color update*/

@@ -10,6 +10,7 @@ var apiStreamCall = ["https://api.twitch.tv/kraken/streams/proleaguecsgo","https
 var channels = ["proleaguecsgo","imaqtpie","kevinho90","playhearthstone","freecodecamp","dota2ruhub","blizzard","cohhcarnage","comster404"]; //Not used in this program, for futur improvements
 
 $(document).ready(function() {
+//Loading data to html and class generation
 for (var i = 0; i < apiStreamCall.length; i++) {
   var rowToUpdate = ".row" + (i);                                               //This var will help us to select the right row to add a class in.
   var description = $(rowToUpdate).find(".description");                        //This var is mandatory as I can't use find + append in same instruction
@@ -22,16 +23,14 @@ for (var i = 0; i < apiStreamCall.length; i++) {
    headers: {   //If set as true (or not set, its by default, all requests are launched at the same time without executing the code inside ajax request)
      'Client-ID': 'f8xpjswqdd4dvy82cqqpxgxhohjt0wx'                             //Key that you get registering your app on twitch.
    },
+
    success: function(data) {
-     var status;
-
-
      if (data.stream === null) { //Check if channel online or not
        var status = "offline";
        $(rowToUpdate).find(".col").addClass("offline");           //According to the loop number, we select the right row to add a class in and apply the css on it automatically.
        $(description).append("<p>Offline</p>");
      } else {
-       var status = data.stream.channel.status;                                 //Takes the current title of the streaming channel
+       var status = data.stream.channel.status;                                 //Takes the current title of the streaming channel, only if it's online.
        $(rowToUpdate).find(".col").addClass("online");
        $(description).append("<p>" + status + "</p>");
      }
@@ -43,4 +42,26 @@ for (var i = 0; i < apiStreamCall.length; i++) {
    }
   });
 }
+
+//Button behavior
+$(".onlineBtn").click(function() {
+  $(".online").show();
+  $(".offline").hide();
+  $(".error").hide();
+
+});
+
+$(".offlineBtn").click(function() {
+  $(".online").hide();
+  $(".offline").show();
+  $(".error").hide();
+});
+
+$(".allBtn").click(function() {
+  $(".online").show();
+  $(".offline").show();
+  $(".error").show();
+
+});
+
 });
