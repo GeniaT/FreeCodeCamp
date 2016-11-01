@@ -1,0 +1,53 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Roman_Numerical_Converter</title>
+  </head>
+  <body>
+    <script>
+//Convert any number from 1 to 4999 in roman numbers
+    function convertToRoman(num) {
+      var x = num;
+      var units = [1,2,3,4,5,6,7,8,9];
+      var tens = [10,20,30,40,50,60,70,80,90];
+      var hundreds = [100,200,300,400,500,600,700,800,900];
+      var thousands = [1000,2000,3000]
+
+      var unitsRom = ["I","II","III","IV","V","VI","VII","VIII","IX"];
+      var tensRom = ["X","XX","XXX","XL","L","LX","LXX","LXXX","XC"];
+      var hundredsRom = ["C","CC","CCC","CD","D","DC","DCC","DCCC","CM"];
+      var thousandsRom = ["M","MM","MMM"];
+      var convertedArray = [];
+      var numberConverted;
+
+      console.log("the length of the number is " + num.length); // ISSUE retuns UNDEFINED !
+      if (num.length = 1) { // Something wrong here too.
+        var index = units.indexOf(num);
+        convertedArray.push(unitsRom[index]);
+        console.log(convertedArray);
+
+      } else if (num.length = 2) {
+        var index = tens.indexOf(num);
+        console.log(index);
+        convertedArray.push(tensRom[index]);
+        console.log(convertedArray);
+
+      } else if (num.length === 3) {
+
+      } else if ((num.length === 4) && (num < 4000)) {
+
+      } else {
+        alert("choose a number between 1 and 3999");
+      }
+
+
+     return num;
+    }
+
+    convertToRoman(30);
+
+
+    </script>
+  </body>
+</html>
