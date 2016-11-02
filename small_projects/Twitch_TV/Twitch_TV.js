@@ -30,7 +30,7 @@ for (var i = 0; i < apiStreamCall.length; i++) {
        $(rowToUpdate).find(".col").addClass("offline");           //According to the loop number, we select the right row to add a class in and apply the css on it automatically.
        $(description).append("<p>Offline</p>");
      } else {
-       var status = data.stream.channel.status;                                 //Takes the current title of the streaming channel, only if it's online.
+       var status = data.stream.channel.status.substring(0,25); //Takes the current title of the streaming channel, only if it's online. We limit the nr of chars to 25
        $(rowToUpdate).find(".col").addClass("online");
        $(description).append("<p>" + status + "</p>");
      }
