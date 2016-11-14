@@ -6,87 +6,67 @@
   </head>
   <body>
     <script>
-//Convert any number from 1 to 4999 in roman numbers
-var units        = [1,2,3,4,5,6,7,8,9];
-var tens         = [1,2,3,4,5,6,7,8,9];
-var hundreds     = [1,2,3,4,5,6,7,8,9];
-var thousands    = [1,2,3];
-
-var unitsRom     = ["I","II","III","IV","V","VI","VII","VIII","IX"];
-var tensRom      = ["X","XX","XXX","XL","L","LX","LXX","LXXX","XC"];
-var hundredsRom  = ["C","CC","CCC","CD","D","DC","DCC","DCCC","CM"];
-var thousandsRom = ["M","MM","MMM"];
-var arrayBeforeConv = [];
+    //Convert any number from 1 to 3999 in roman numbers
+    var numbers      = [1,2,3,4,5,6,7,8,9];
+    var unitsRom     = ["I","II","III","IV","V","VI","VII","VIII","IX"];
+    var tensRom      = ["X","XX","XXX","XL","L","LX","LXX","LXXX","XC"];
+    var hundredsRom  = ["C","CC","CCC","CD","D","DC","DCC","DCCC","CM"];
+    var thousandsRom = ["M","MM","MMM"];
 
     function convertToRoman(num) {
+      var numberSplited = (String(num)).split("");
+      console.log(numberSplited);
 
-          var numberSplited = (String(num)).split("");
-          console.log(numberSplited);
-          console.log("La longueur de la variable fait " + numberSplited.length);
-          var firstPick = Number(numberSplited[0]);
-          console.log(firstPick);
-          var secondPick = Number(numberSplited[1]);
-          var thirdPick = Number(numberSplited[2]);
-          var fourthPick = Number(numberSplited[3]);
+      if (numberSplited.length === 4) {
+        var arrayBeforeJoin = [];
+        var index = numbers.indexOf(Number(numberSplited[0]));//On traite le 1er chiffre du nbre
+        var index2 = numbers.indexOf(Number(numberSplited[1]));
+        var index3 = numbers.indexOf(Number(numberSplited[2]));
+        var index4 = numbers.indexOf(Number(numberSplited[3]));
 
+        arrayBeforeJoin.push(thousandsRom[index]);
+        arrayBeforeJoin.push(hundredsRom[index2]);
+        arrayBeforeJoin.push(tensRom[index3]);
+        arrayBeforeJoin.push(unitsRom[index4]);
+        var result = arrayBeforeJoin.join("");
+        console.log(result);
 
-          if (numberSplited.length === 4) {
-            console.log("je suis bien sur un nombre à 4 chiffres");
-            toThousands(firstPick);
-            toHundreds(secondPick);
-            toTens(thirdPick);
-            toUnits(fourthPick);
-          } else if (numberSplited.length === 3) {
-            toHundreds(firstPick);
-            toTens(secondPick);
-            toUnits(thirdPick);
-          } else if (numberSplited.length === 2) {
-            toTens(firstPick);
-            toUnits(secondPick);
-          } else {
-            toUnits(firstPick);
-          }
+      } else if (numberSplited.length === 3) {
+        var arrayBeforeJoin = [];
+        var index = numbers.indexOf(Number(numberSplited[0]));//On traite le 1er chiffre du nbre
+        var index2 = numbers.indexOf(Number(numberSplited[1]));
+        var index3 = numbers.indexOf(Number(numberSplited[2]));
 
-      converted = arrayBeforeConv.join("");
-      console.log(converted);
+        arrayBeforeJoin.push(hundredsRom[index]);
+        arrayBeforeJoin.push(tensRom[index2]);
+        arrayBeforeJoin.push(unitsRom[index3]);
+        var result = arrayBeforeJoin.join("");
+        console.log(result);
+
+      } else if (numberSplited.length === 2) {
+        var arrayBeforeJoin = [];
+        var index = numbers.indexOf(Number(numberSplited[0]));//On traite le 1er chiffre du nbre
+        var index2 = numbers.indexOf(Number(numberSplited[1]));
+
+        arrayBeforeJoin.push(tensRom[index]);
+        arrayBeforeJoin.push(unitsRom[index2]);
+        var result = arrayBeforeJoin.join("");
+        console.log(result);
+    //Reste à push les valeurs plutôt que de les afficher séparement et de les join();
+      } else {
+        var index = numbers.indexOf(Number(numberSplited[0]));//index dans l'array numbers du num (de 1 à 10)
+        console.log(unitsRom[index]);//Affichage avec le même index de l'équivalent romain
+      }
+
     }
 
-      function toThousands(num) {
-        var index = thousands.indexOf(num);
-        var thousandsConverted = thousandsRom[index];
-        if (thousandsConverted) {
-          arrayBeforeConv.push(thousandsConverted);
-        }
-      }
-
-      function toHundreds(num) {
-        var index = hundreds.indexOf(num);
-        var hundredsConverted = hundredsRom[index];
-        if (hundredsConverted) {
-          arrayBeforeConv.push(hundredsConverted);
-        }
-      }
-
-      function toTens(num) {
-        var index = tens.indexOf(num);
-        var tensConverted = tensRom[index];
-        if (tensConverted) {
-        arrayBeforeConv.push(tensConverted);
-        }
-      }
-
-      function toUnits(num) {
-        var index = units.indexOf(num);
-        var unitsConverted = unitsRom[index];
-        if (unitsConverted) {
-        arrayBeforeConv.push(unitsConverted);
-        }
-      }
-
-//Soucis à gérer: lors d'une succession d'opérations, il faut vider d'une certaine façon : arrayBeforeConv = []; mais je ne sais pas encore comment
-    convertToRoman(3765);
-    //var arrayBeforeConv = [];
-
+    //convertToRoman(3000);
+    convertToRoman(200);
+    convertToRoman(19);
+    convertToRoman(3);
+    convertToRoman(3999);
+    convertToRoman(987);
+    convertToRoman(2);
 
 
 
