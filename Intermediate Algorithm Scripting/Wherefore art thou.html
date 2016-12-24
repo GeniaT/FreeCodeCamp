@@ -1,0 +1,55 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Wherefore art thou</title>
+  </head>
+  <body>
+<script>
+//Collection is composed of various object with multiple properties, source is one object with properties.
+//The algo has to create an Array with all objects in Collection having the source in common (properties and values)
+function whatIsInAName(collection, source) {
+  var arr = [];
+
+for (var i = 0; i < collection.length; i++) { //In each obj of collection, I do various checks:
+  for (var name in source) { //for each property in source...
+    var sourcePropArray = Object.getOwnPropertyNames(source); //Returns an array of properties in source
+    var indexSource = sourcePropArray.indexOf(name); //gives the index of the current name(prop) in source
+    var collectionObjPropArray = Object.getOwnPropertyNames(collection[i]); //Returns an array of prop but differently as collection is an array of object and source in an object
+    var indexCollection = collectionObjPropArray.indexOf(name); //gives the index of the current name(prop) in collection
+
+
+    if ((collection[i].hasOwnProperty(name)) && ((source[Object.keys(source)[indexSource]]) === (collection[i][Object.keys(collection[i])[indexCollection]]))) {
+      if (name === sourcePropArray[sourcePropArray.length-1]) { //if the prop and value is the same and I am checking the last prop of source...
+        console.log("pushing into array");
+        arr.push(collection[i]); //I push it into the array !!!
+      }
+    } else {
+      console.log("prop and values don't match for " + collection[i]);
+      console.log(name);
+      break; //by breaking, I take the next obj of the collection.
+    }
+
+  }
+
+}
+
+
+console.log(arr);
+
+
+}
+
+
+
+
+
+//whatIsInAName( [{ first: "Romeo", last: "Montague" }, { first: "Mercutio", last: null }, { first: "Tybalt", last: "Capulet" }], { last: "Capulet" } );
+
+//whatIsInAName([{ "a": 1, "b": 2 }, { "a": 1 }, { "a": 1, "b": 2, "c": 2 }], { "a": 1, "b": 2 });
+//whatIsInAName([{ "a": 1 }, { "a": 1 }, { "a": 1, "b": 2 }], { "a": 1 });
+
+whatIsInAName([{ "a": 1, "b": 2 }, { "a": 1 }, { "a": 1, "b": 2, "c": 2 }], { "a": 1, "c": 2 });
+</script>
+  </body>
+</html>

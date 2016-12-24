@@ -1,0 +1,29 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>search replace</title>
+  </head>
+  <body>
+<script>
+
+function myReplace(str, before, after) {
+
+if (before[0] == before[0].toLowerCase()) {//scenario 1: If before[0] is lowercase, simply replace
+  var str = str.replace(before, after);
+  console.log(str);
+} else { //scenario 2: If before[0] is a uppercase, need to modify the after before replacing
+  var after = after.charAt(0).toUpperCase() + after.slice(1);
+  var str = str.replace(before, after);
+  console.log(str);
+}
+
+
+
+
+}
+
+myReplace("He is Sleeping on the couch", "Sleeping", "sitting");
+</script>
+  </body>
+</html>
