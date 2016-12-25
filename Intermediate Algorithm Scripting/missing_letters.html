@@ -1,0 +1,30 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>missing letters</title>
+  </head>
+  <body>
+<script>
+
+function fearNotLetter(str) {
+  var alphabet = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'];
+  var indexAlpha = alphabet.indexOf(str[0]);
+  console.log(indexAlpha); //1
+
+    for (var i = 0; i < str.length; i++) { //chaque lettre de str
+      if (str[i] === alphabet[indexAlpha + i]) {
+        //console.log("We good for now");
+      } else {
+        str = alphabet[indexAlpha + i];
+        console.log("The missing letter is " + str);
+        return str;
+      }
+    }
+    return undefined; //Means no letter missing in the letter range str
+}
+
+fearNotLetter("bcd");
+</script>
+  </body>
+</html>

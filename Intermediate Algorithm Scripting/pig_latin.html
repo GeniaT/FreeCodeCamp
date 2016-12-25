@@ -1,0 +1,50 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Pig Latin</title>
+  </head>
+  <body>
+<script>
+
+function translatePigLatin(str) {
+  var vowels = ['a','e','i','o','u'];
+  var consonants = ['b','c','d','f','g','h','j','k','l','m','n','p','q','r','s','t','v','w','x','y','z'];
+  var endofWord;
+  var array;
+
+
+
+  if ((consonants.indexOf(str[0]) !== (-1)) && (consonants.indexOf(str[1]) !== (-1))) { // check on -1 as the code inside the if is ran even with -1 as result
+    //1st and 2nd letter is a consonant!
+    var preArray = [str[0],str[1],"ay"];
+    var endofWord = preArray.join("");
+    var array = [str.substr(2),endofWord];
+    var str = array.join("");
+
+    console.log(str);
+
+  } else if (consonants.indexOf(str[0]) !== (-1)) { //if just 1st letter = consonne
+    //1nd letter is a consonant!
+    var preArray = [str[0],"ay"];//Creates the consonant + ay word for the end of the word
+    var endofWord = preArray.join("");
+    var array = [str.substr(1),endofWord]; 
+    var str = array.join("");
+
+    console.log(str);
+
+  } else if ( vowels.indexOf(str[0]) !== (-1) ) { //1st letter = voyelle
+
+    var endofWord = "way";
+    var array = [str,endofWord];
+    var str = array.join("");
+    console.log(str);
+  }
+
+
+}
+
+translatePigLatin("glove");
+</script>
+  </body>
+</html>
