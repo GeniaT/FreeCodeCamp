@@ -1,0 +1,39 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Sorted Onion</title>
+  </head>
+  <body>
+<script>
+function uniteUnique(arr) {
+  //create an array composed of all arguments
+  var arrForReduce = [];
+  for (var i = 0; i < arguments.length; i++) {
+    arrForReduce.push(arguments[i]);
+  }
+  console.log(arrForReduce);
+  //Make a reduce of all this arguments into one single array
+  var argsInOneArray = arrForReduce.reduce(function(a, b) {
+    return a.concat(b);
+  }, []);
+
+  console.log(argsInOneArray);// [1, 3, 2, 5, 2, [1], 4, 2, 1]
+
+  //Create a final array without repetitve values from arguments values
+  var finalArray = [];
+  for (var j = 0; j < argsInOneArray.length; j++) { //for each element of our arguments combined array...
+    if (finalArray.indexOf(argsInOneArray[j]) === -1) { // if the current value isn't in finalArray, then push it in it
+      finalArray.push(argsInOneArray[j]);
+    }
+  }
+  console.log(finalArray); //representing array with no repetitive values
+}
+
+//uniteUnique([1, 3, 2], [5, 2, [1], 4], [2, 1]);
+uniteUnique([1, 3, 2], [1, [5]], [2, [4]]);
+
+
+</script>
+  </body>
+</html>

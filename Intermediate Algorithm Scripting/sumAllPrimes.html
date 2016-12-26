@@ -1,0 +1,44 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>sum all primes</title>
+  </head>
+  <body>
+<script>
+/*Sum all the prime numbers up to and including the provided number.
+
+A prime number is defined as a number greater than one and having only two divisors,
+one and itself. For example, 2 is a prime number because it's only divisible by one and two.
+
+The provided number may not be a prime.
+*/
+
+function sumPrimes(numbers) {
+  var primeNumbers = [2,3];
+
+  for (var num = 4; num<=numbers; num++) { //Starting by 4 so I don't deal with special cases 2 and 3
+    for (var den = 2; den < num; den++) { //I check all dividers till the number it self, may have done till the square root of the number, would have been more optimized
+      if (num % den === 0) { //Break if it's not a prime number
+        break;
+      } if ((num % den !== 0) && (den === num-1)) {
+        primeNumbers.push(num); //if prime, push to prime array
+        break;
+      }
+    }
+  }
+
+console.log(primeNumbers);
+var sum = primeNumbers.reduce(function (a,b) { //sum numbers from prime array
+  return a + b;
+},0);
+
+console.log(sum);
+
+}
+
+sumPrimes(977); //73156
+
+</script>
+  </body>
+</html>

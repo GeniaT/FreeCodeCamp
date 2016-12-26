@@ -1,0 +1,30 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Convert HTML entities</title>
+  </head>
+  <body>
+<script>
+/*Convert the characters &, <, >, " (double quote), and ' (apostrophe),
+ in a string to their corresponding HTML entities.*/
+
+function convertHTML(str) {
+  str = str.replace(/&/g, "&​amp;");// with the "g", I would replace only the 1st symbol
+  str = str.replace(/</g, "&​lt;");
+  str = str.replace(/>/g, "&​gt;");
+  str = str.replace(/"/g, "&​quot;");
+  str = str.replace(/'/g, "&​apos;");
+
+  console.log(str);
+
+}
+
+convertHTML("Dolce & Gabbana"); //Dolce &​amp; Gabbana
+convertHTML("Hamburgers < Pizza < Tacos"); //Hamburgers &​lt; Pizza &​lt; Tacos
+convertHTML("Sixty > twelve"); //Sixty &​gt; twelve
+
+
+</script>
+  </body>
+</html>

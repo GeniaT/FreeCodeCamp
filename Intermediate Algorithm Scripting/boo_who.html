@@ -6,19 +6,18 @@
   </head>
   <body>
 <script>
-/*
+//Check if the value passed in the function is boolean primitive or not (the subject itself is quiet tricky)
 function booWho(bool) {
-  // What is the new fad diet for ghost developers? The Boolean.
-  return bool;
+  if (typeof bool === "boolean") {
+    return true;
+  } else {
+    return false;
+  }
 }
 
-booWho(null);*/
+booWho(null);
 
-var x = Boolean("true");
-var y = Boolean("1");
 
-console.log(x);
-console.log(y);
 
 </script>
   </body>
