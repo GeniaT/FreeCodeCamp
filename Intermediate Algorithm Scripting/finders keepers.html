@@ -1,0 +1,27 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>finder Keepers</title>
+  </head>
+  <body>
+<script>
+/*Create a function that looks through an array (first argument) and
+ returns the first element in the array that passes a truth test
+ (second argument).*/
+
+function findElement(arr, func) {
+
+var filtered = arguments[0].filter(arguments[1]); //create a filtered array that meet the conditions of the func
+console.log(filtered[0]); //and return the first element of the array.
+
+
+}
+
+findElement([1, 2, 3, 4], function(num){ return num % 2 === 0; }); //gives 2
+
+
+
+</script>
+  </body>
+</html>

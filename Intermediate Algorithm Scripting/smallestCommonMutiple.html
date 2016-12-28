@@ -6,6 +6,58 @@
   </head>
   <body>
 <script>
+//no protect (used to remove a protection againt infinite loops from some editors)
+function smallestCommons(arr) {
+  //Create an array with all numbers that should divide the numbers
+  var dividers = [];
+  var min;
+  var max;
+  var result = 0;
+
+  if (arguments[0][0] < arguments[0][1]) {
+    min = arguments[0][0];
+    max = arguments[0][1];
+    for (var i = max; i >= min; i--) {
+      dividers.push(i);
+    }
+  }
+
+  if (arguments[0][0] > arguments[0][1]) {
+    max = arguments[0][0];
+    min = arguments[0][1];
+    for (var i = max; i >= min; i--) {
+      dividers.push(i);
+    }
+  }
+
+  //Check wich number can be divided by each number of the dividers array
+  for (var i = 2; i < 9999999; i+=2) { //check each even numbers, odd not needed as there is an even number in each range
+    for (var j = 0; j < dividers.length; j++) {
+      if (i % dividers[j] != 0) {
+        break; //if the number cant be divided by the current divider, next
+      } else if (j === dividers.length - 1) { //if we still in the loop and at the end of divider array...
+        if (i % j == 0) { //and the number can be divided by the last number of the array
+          result = i;
+          console.log("The number is " + i);
+          break; //we leave the current loop
+        }
+      }
+    }
+
+    if (result !== 0) { //and leave the second if there is a result stored in the result var
+      break;
+    }
+  }
+
+  console.log(result);
+}
+
+
+smallestCommons([1,5]);
+smallestCommons([5,1]);
+smallestCommons([1,13]);
+smallestCommons([23,18]);
+
 
 
 </script>

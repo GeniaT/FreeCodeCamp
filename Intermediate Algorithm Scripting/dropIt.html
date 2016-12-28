@@ -1,0 +1,78 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>drop it</title>
+  </head>
+  <body>
+<script>
+
+/*Drop the elements of an array (first argument), starting from the front,
+until the predicate (second argument) returns true.
+
+The second argument, func, is a function you'll use to test the first elements of
+ the array to decide if you should drop it or not.
+
+Return the rest of the array, otherwise return an empty array. */
+
+function dropElements(arr, func) {
+//Check if the number in the array meet the func condition
+
+//if not, drop it, if yes, slice the initial array to return the rest of the array as a result
+var limit = arguments[0].length;
+var newArray = arguments[0];
+
+for (var i = 0; i < limit; i++) {
+
+  if (arguments[1](arguments[0][i])) { //if it's true... We return the array as it is
+
+    if (i === 0) { //If the condition is met from the first number of the array,we dont change it
+      newArray = newArray.slice(0);
+      break;
+    } else { //if the an element of the array has an index different of 0 and meets the condition, we slice from index 1
+      newArray = newArray.slice(1);
+      break; //We leave the loop as we found a value from which the rest of the array has to be returned
+    }
+
+//if the condition isnt met for the current element of the array, we drop its character
+  } else {
+    newArray.shift(); //we drop the 1st character of the actual array and condition the loop for next check
+    //And if right after the shift, the 1st character of the modified array meets the condition, we slice the array and return it
+    if (arguments[1](arguments[0][i])) {
+      newArray = newArray.slice(i);
+      break;
+      }
+    }
+
+  }
+
+  console.log(newArray);
+
+}
+/*
+//BETTER SOLUTION BUT NOT MINE:
+function dropElements(arr, func) {
+  // drop them elements.
+  var times = arr.length;
+  for (var i = 0; i < times; i++) {
+    if (func(arr[0])) {
+      break;
+    } else {
+      arr.shift();
+    }
+  }
+  return arr;
+}*/
+
+
+dropElements([1, 2, 3], function(n) {return n < 3; }); //[1,2,3]
+dropElements([1, 2, 3, 4], function(n) {return n >= 3;});// [3, 4]
+dropElements([1, 2, 3, 4], function(n) {return n > 5;});//[]
+dropElements([1, 2, 3, 7, 4], function(n) {return n > 3;}); //[7,4]
+dropElements([0, 1, 0, 1], function(n) {return n === 1;}); //[1,0,1]
+
+
+//CAN CERTAINLY BE OPTIMISED
+</script>
+  </body>
+</html>
