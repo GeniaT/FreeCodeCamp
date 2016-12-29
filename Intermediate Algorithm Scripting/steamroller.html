@@ -7,89 +7,30 @@
   <body>
 <script>
 /*Flatten a nested array. You must account for varying levels of nesting.*/
-/*
-//recursive + for loop inside recursive fct cant work here
-function steamrollArray(arr) {
-  var newArray = [];
-  var basis = arr;
-
-for (var i = 0; i <arr.length; i++) {
-  console.log("i = " + i);
-  if (Array.isArray(arr[i])) { //We its an array, we dive in
-
-    return steamrollArray(arr[0]);
-
-  } else { //if not, we push the value to newArray and run the next element of arr
-    newArray.push(arr);
-    console.log("arr = " + arr);
-    return;
-  }
 
 
-}
-  console.log("newArray = " + newArray);
-}
+function steamrollArray (arr) {
+  var newArray = []; //array where we store each element of nested array
 
-*/
-//for (var i = 0; i <arr.length; i++) {
-/*
-  function steamrollArray(arr) {
-    var newArray = [];
-
-      if (Array.isArray(arr[0])) {
-        console.log("test");
-        return steamrollArray(arr[0]);
-      } else {
-        console.log("test2");
-        newArray.push(arr[0]); //At this point, we got deep to the value and want to move on next
-
-      }
-
-
-  }
-*/
-//}
-
-function steamrollArray(arr) {
-  var flattenedArray = [];
-
-  // Create function that adds an element if it is not an array.
-  // If it is an array, then loops through it and uses recursion on that array.
-  
-  var flatten = function(arg) { //arg is set via the forEach method called at the end of the pgm
-    if (!Array.isArray(arg)) {
-      flattenedArray.push(arg);
-    } else {
-      for (var a in arg) {
-        flatten(arg[a]);
+  //recursive fct expression (not executed yet here)
+  var flatten = function recurse(arg) {
+    if (!Array.isArray(arg)) { //if the element found isnt an array, we push it
+      newArray.push(arg);
+    } else { //if array, we rerun the fct to go deeper taking the 1st arg of it and check if its an array or not
+      for (var a in arg) { //for in used usually to loop through objects
+        recurse(arg[a]); //if recurse(arg) was ran, we wouldn't go deeper in the array. At this step, the recurse fct remember with what arg it was lastly called.
       }
     }
   };
 
-  // Call the function for each element in the array
-  arr.forEach(flatten);
-  console.log(flattenedArray);
+  arr.forEach(flatten); //allows us to run through each element of arr
+  console.log(newArray);
 }
 
 // test here
 steamrollArray([1, [2], [3, [[4]]]]);
 steamrollArray([1, {}, [3, [[4]]]]);
 steamrollArray([[[[[[[1]]]]]], 2, [3, [[4]]]]);
-
-
-
-
-
-
-
-
-
-/*
-steamrollArray([[["a"]], [["b"]]]) should return ["a", "b"].
-steamrollArray([1, [2], [3, [[4]]]]) should return [1, 2, 3, 4].
-steamrollArray([1, [], [3, [[4]]]]) should return [1, 3, 4].
-steamrollArray([1, {}, [3, [[4]]]]) should return [1, {}, 3, 4].
-*/
 
 </script>
   </body>

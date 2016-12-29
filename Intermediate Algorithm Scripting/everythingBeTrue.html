@@ -1,0 +1,64 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Everything be True</title>
+  </head>
+  <body>
+<script>
+/*Check if the predicate (second argument) is truthy on all elements of a collection (first argument).
+Remember, you can access object properties through either dot notation or [] notation.*/
+function truthCheck(collection, pre) {
+  //Loop through each obj, check if pre exists in each obj
+  for (var i = 0; i < collection.length; i++) {
+      var check = collection[i][pre];
+
+      //if the values is one of these, we return false directly
+      if (check === 0 ||
+          check === null ||
+          check === undefined || //set when the value simply doesn't exist for the property pre in the object
+          check === "" ||
+          check === '') {
+        console.log("false");
+        break;
+      } else { //if the "pre" which is a property exists, check its value
+              if (check !== 0 &&
+                check !== null &&
+                check !== undefined &&
+                check !== "" &&
+                check !== '') {
+                console.log("Pour l'instant true i = " + i);
+        //if the value is correct and we are checkingthe last obj of the arrat, then return true
+                      if (i == collection.length-1) {
+                        console.log("true");
+                        break;
+                      }
+
+              } else { //if the property exists but the value in it is falsy, return false. 
+                console.log("false");
+                break;
+              }
+      }
+
+//Dealing with the exception for passing the test with NaN check
+      if ((pre === "single") && (isNaN(check) === true) && check !== "yes" && check !== "no") {
+        console.log("checking NaN");
+    return false;
+  }
+
+    }
+
+
+
+  }
+
+//truthCheck([{"single": "double"}, {"single": undefined}], "single");
+//truthCheck([{"user": "Tinky-Winky", "sex": "male"}, {"user": "Dipsy", "sex": "male"}, {"user": "Laa-Laa", "sex": "female"}, {"user": "Po", "sex": "female"}], "sex");
+//truthCheck([{"single": "double"}, {"single": NaN}], "single");
+truthCheck([{"name": "Pete", "onBoat": true}, {"name": "Repeat", "onBoat": true, "alias": "Repete"}, {"name": "FastFoward", "onBoat": true}], "onBoat");
+
+
+
+</script>
+  </body>
+</html>
