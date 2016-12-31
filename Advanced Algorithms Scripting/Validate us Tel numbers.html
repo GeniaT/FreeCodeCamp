@@ -1,0 +1,41 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Validate US tel numbers</title>
+  </head>
+  <body>
+<script>
+/*rules:
+10 or 11 numbers in total,
+  if 11: the 1st should be 1
+  if 10: the () should be around the first 3 numbers
+
+*/
+
+function telephoneCheck(str) {
+  var regex = /[ ()-]/g;
+  str = str.replace(regex,"");//- should be at the end of the regex and not in the middle
+  //If the amount of numbers is incorrect to be an US number, return false:
+  if (str.length > 12 || str.length < 10) {
+    return false;
+  }
+//country code case, return false if not 1:
+  if ((str.length === 11) && (str[0] != 1)) { //not !== as we check in a string
+    console.log("false");
+    return false;
+  } else {
+    console.log("true");
+    return true;
+  }
+
+}
+
+
+
+//telephoneCheck("555-555-5555");
+telephoneCheck("2 757 622-7382");
+telephoneCheck("1(555)555-5555");
+</script>
+  </body>
+</html>
