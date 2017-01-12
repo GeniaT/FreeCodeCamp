@@ -10,32 +10,62 @@
 10 or 11 numbers in total,
   if 11: the 1st should be 1
   if 10: the () should be around the first 3 numbers
-
 */
 
 function telephoneCheck(str) {
   var regex = /[ ()-]/g;
+  var parenthese = /\(|\)/g; //Check if there is a ( or a ) in the string
+  var rightFormat = /\(...\)/g; //check if there are 3digits between ()
+
+
+
+  //Parenthesis logic: if I find ( or ), I check I have (...) format and nothing else
+  if (/\(|\)/g.test(str)) { //assigning the regex to a var and do a if in this case doesnt work here
+    console.log("inside 1st if");
+    if (/\(...\)/g.test(str) == false) {
+      console.log("mauvais format");
+      return false;
+    }
+  }
+
+  if (/\D/g.test(str[0]) && str[0] !== "(") { //If the 1st character isnt a digit and different of (
+  return false;
+}
+
   str = str.replace(regex,"");//- should be at the end of the regex and not in the middle
+
   //If the amount of numbers is incorrect to be an US number, return false:
-  if (str.length > 12 || str.length < 10) {
+  if (str.length >= 12 || str.length < 10) {
     return false;
   }
 //country code case, return false if not 1:
   if ((str.length === 11) && (str[0] != 1)) { //not !== as we check in a string
-    console.log("false");
+    //console.log("false");
     return false;
   } else {
-    console.log("true");
+    //console.log("true");
     return true;
   }
 
 }
 
+telephoneCheck("-2 757) 622-7382"); //false
+telephoneCheck("1(555)555-5555"); //true
+telephoneCheck("1 555-555-5555"); //should return true.
+telephoneCheck("1 (555) 555-5555"); //should return true.
+telephoneCheck("5555555555"); //should return true.
+telephoneCheck("555-555-5555"); //should return true.
+telephoneCheck("(555)555-5555"); //should return true.
+telephoneCheck("1(555)555-5555"); //should return true.
+telephoneCheck("555-5555"); //should return false.
+telephoneCheck("5555555"); //should return false.
+telephoneCheck("1 555)555-5555"); //should return false.
+telephoneCheck("1 555 555 5555"); //should return true.
+telephoneCheck("1 456 789 4444"); //should return true.
+telephoneCheck("123**&!!asdf#"); //should return false.
+telephoneCheck("55555555"); //should return false.
+telephoneCheck("(6505552368)"); //should return false
 
-
-//telephoneCheck("555-555-5555");
-telephoneCheck("2 757 622-7382");
-telephoneCheck("1(555)555-5555");
 </script>
   </body>
 </html>

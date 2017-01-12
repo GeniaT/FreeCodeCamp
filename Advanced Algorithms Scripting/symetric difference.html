@@ -1,0 +1,36 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>symetric difference</title>
+  </head>
+  <body>
+<script>
+/* We need to find the different elements between 2 or more arrays.
+When we have more than 2 arrays to compare, we compare the 2 first, then the
+result with the 3rd etc till the end*/
+
+//STRUGGLE WITH REDUCE !!!! Need to improve there...
+
+function symDiff(args){
+  // convert args to an Array so we can do reduce on it
+  var argsArray = Array.prototype.slice.call(arguments);
+
+  // now do the reduce magic!
+var theDiff = argsArray.reduce(function(acc, item){
+
+    return acc.filter(function(itemInAcc){//via filter fct, we return only numbers the 2nd array are not in the 1st
+        return item.indexOf(itemInAcc) === -1;
+      }).concat(item.filter(function(itemInItem){ //and we concat the result from above filter with values from the 1st array that are not in the second.
+        return acc.indexOf(itemInItem) === -1;
+      }));
+
+  },[]);
+  console.log(theDiff);
+}
+
+symDiff([1, 2, 3], [5, 2, 1, 4]);
+
+</script>
+  </body>
+</html>
