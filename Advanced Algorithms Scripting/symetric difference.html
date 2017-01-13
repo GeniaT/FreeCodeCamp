@@ -10,26 +10,45 @@
 When we have more than 2 arrays to compare, we compare the 2 first, then the
 result with the 3rd etc till the end*/
 
-//STRUGGLE WITH REDUCE !!!! Need to improve there...
+//1st we create a function that extracts the numbers not present in both first array in the argument.
+//It will then be used via reduce fct as a callback
+function myFunction () {
+  //Creates an array with all the arguments instead of creating a loop
+  var args = Array.prototype.slice.call(arguments);
+  var delta = [];
 
-function symDiff(args){
-  // convert args to an Array so we can do reduce on it
-  var argsArray = Array.prototype.slice.call(arguments);
+  //Check if numbers of the 1st array present in the 2nd
+  for (var i = 0; i < args[0].length; i++) {
+    if (args[1].indexOf(args[0][i]) === -1) {
+      delta.push(args[0][i]);
+    }
+  }
 
-  // now do the reduce magic!
-var theDiff = argsArray.reduce(function(acc, item){
-
-    return acc.filter(function(itemInAcc){//via filter fct, we return only numbers the 2nd array are not in the 1st
-        return item.indexOf(itemInAcc) === -1;
-      }).concat(item.filter(function(itemInItem){ //and we concat the result from above filter with values from the 1st array that are not in the second.
-        return acc.indexOf(itemInItem) === -1;
-      }));
-
-  },[]);
-  console.log(theDiff);
+  //Check if numbers of the 2nd array present in the 1st
+  for (var j = 0; j < args[1].length; j++) {
+    if (args[0].indexOf(args[1][j]) === -1) {
+      delta.push(args[1][j]);
+    }
+  }
+  return delta; //for myFunction([1, 2, 3],[2, 4, 6]); we return [1,3,4,6]
 }
 
-symDiff([1, 2, 3], [5, 2, 1, 4]);
+function sym() {
+  var args = Array.prototype.slice.call(arguments); //making an array from all arguments of the fct
+  var resultDuplicate = args.reduce(myFunction, []); //this result may have duplicates. The second arg of the reduce fct is an empty array that will have the symm difference in it
+  var finalResult = [];
+
+  //removing duplicates from array before returning
+  for (var i = 0; i < resultDuplicate.length; i++) {
+    if (finalResult.indexOf(resultDuplicate[i]) === -1) {
+      finalResult.push(resultDuplicate[i]);
+    }
+  }
+  console.log(finalResult); //result from reduce fct with no duplicates
+}
+
+//myFunction([1, 2, 3],[2, 4, 6]);
+sym([1, 1, 2, 5], [2, 2, 3, 5], [3, 4, 5, 5]);
 
 </script>
   </body>
