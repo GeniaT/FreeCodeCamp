@@ -1,0 +1,108 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Exact change</title>
+  </head>
+  <body>
+<script>
+/*Instructions: 1st arg = price to pay,2nd = cash the client gives, 3rd whats in cash in drawer.
+If the change due > what's in the cid, return "Insufficient funds".
+If change due = what's in the cid, return "Closed".
+Otherwise, return the change due from highest to lowest bills/coins and amount associated to it.*/
+
+/*Solution summary:
+  global fct checkCashRegister
+    fct reduce + addTwoValues : calculate the amount in cash in drawer
+    fct change : creation of array with the change, by bill/coins
+      fct changeCalcul: looping through all arrays and calculating the amounts of change by coin
+        fct updateChange: when amounts are calculated, update of change [] that represents the final result.
+*/
+
+function checkCashRegister(price, cash, cid) {
+  var changeDue = cash - price;
+
+  // calculate the value in cid
+  function addTwoValues (arr1, arr2) {
+    var suming = arr1 + arr2[1]; //arr1 is 0 at first then it become var suming. arr2[1] is the value in each subarray like 1.01 in ["PENNY", 1.01]
+    return suming;
+
+  }
+
+  var cidSum = cid.reduce(addTwoValues, 0); //returns results like 3.0599999999 so need a rounding rule at this pt
+  var cidSumRounded = Math.round(cidSum * 100) / 100; //Not perfect rule but enough for this case as we want to round at 2 decimals
+
+  //If the change due > what's in the cid, return "Insufficient funds".
+  if (changeDue === cidSumRounded) {
+    console.log("Closed");
+  } else if (changeDue > cidSumRounded) {
+    console.log("Insufficient Funds");
+  } else {
+    change(cid);
+  }
+
+  //with the changeDue amount,, return from highest to lowest the bills/coins + amount that represent the change. Or "Insufficient Funds" if the exact change can't be given.
+  function change(cid) {
+    var change = [];
+    var coinValues = [0.01, 0.05, 0.1, 0.25, 1, 5, 10, 20, 100];
+
+    //Add value of bills and coins to array cid so I have one array with the needed info for calculation
+    for (var i = 0; i < 9; i++) {
+      cid[i].push(coinValues[i]);
+    }
+
+/*cid as this format : [["PENNY", 1.01, 0.01], ["NICKEL", 2.05, 0.05], ["DIME", 3.1, 0.1], ["QUARTER", 4.25, 0.25],
+["ONE", 90, 1], ["FIVE", 55, 5], ["TEN", 20, 10], ["TWENTY", 60, 20], ["ONE HUNDRED", 100, 100]]*/
+
+    //fct with loop to run through all arr for change Due calculation
+    function changeCalcul(arr) {
+      var changeDue = cash - price; //Need to redeclare and associate the value for changeDue
+
+      //updating the change array in ["PENNY", 0,4] format
+      function updateChange () {
+        change.push(arr[i].slice(0,1));
+        change[change.length-1].push(valueInCoin);
+      }
+
+      for (var i = 8; i >= 0; i--) { //we start from last arr(biggest coin)
+
+        if (arr[i][2] <= changeDue) { //if the coin value doesn't exceed changeDue
+
+              if (changeDue > arr[i][1]) { //and changeDue is greater than the amount available in this coins
+                //var changeDue & valueInCoin can't be in higher scope as they depend on nbrCoins
+                var nbrCoins = arr[i][1] / arr[i][2];
+                var valueInCoin = Math.floor(nbrCoins) * arr[i][2]; //alternative to %.
+                var changeDue = Math.round((changeDue - valueInCoin) * 100) / 100; //to avoid values like 34,7899999999, converting to 34,79
+                updateChange();
+
+              } else if (changeDue <= arr[i][1]) { //changeDue < the amount available in this coins
+                var nbrCoins = changeDue / arr[i][2];
+                var valueInCoin = Math.floor(nbrCoins) * arr[i][2];
+                var changeDue = Math.round((changeDue - valueInCoin) * 100) / 100;
+                updateChange();
+              }
+
+        }
+
+        if (changeDue === 0) { //we stop scanning other arrays the change is correct
+        console.log(change);
+        return change;
+        }
+      }
+      //If at the end of the loop, we still have a changeDue, there isn't enough money in the cid!
+      if (changeDue > 0) {
+        console.log("Insufficient Funds");
+      }
+    }
+    changeCalcul(cid);
+  }
+}
+
+
+
+
+
+checkCashRegister(19.50, 20.00, [["PENNY", 1.01], ["NICKEL", 2.05], ["DIME", 3.10], ["QUARTER", 4.25], ["ONE", 90.00], ["FIVE", 55.00], ["TEN", 20.00], ["TWENTY", 60.00], ["ONE HUNDRED", 100.00]]);
+</script>
+  </body>
+</html>
