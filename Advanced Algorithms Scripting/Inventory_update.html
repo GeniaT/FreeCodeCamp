@@ -1,0 +1,61 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Inventory Update</title>
+  </head>
+  <body>
+<script>
+
+
+
+
+  // Example inventory lists
+  var curInv = [
+      [21, "Bowling Ball"],
+      [2, "Dirty Sock"],
+      [1, "Hair Pin"],
+      [5, "Microphone"]
+  ];
+
+  var newInv = [
+      [2, "Hair Pin"],
+      [3, "Half-Eaten Apple"],
+      [67, "Bowling Ball"],
+      [7, "Toothpaste"]
+  ];
+
+  //checking if the inc item is already in the inventory
+  for (var i = 0; i < newInv.length; i++) { //loop through each newInv array
+    for (var j = 0; j < curInv.length; j++) { //loop through each curInv array
+      if (newInv[i][1] === curInv[j][1]) { //of inc item is in curInv, we sum the Quantities
+        //Just add quantities in curInv + break to take next Item
+        curInv[j][0] += newInv[i][0];
+        break;
+      } else if (j === (curInv.length-1)) {
+        //We add quantity and item to curInv array
+        curInv.push(newInv[i]);
+        break;
+      }
+    }
+  }
+console.log(curInv);
+
+//fct to sort alphabetically the arr at the end.
+function sortAlpha (curInv) {
+  function funct(a,b) {
+    if(a[1] === b[1]) {
+      return 0;
+    } else {
+      return (a[1] < b[1]) ? -1 : 1;
+    }
+  }
+  console.log(curInv.sort(funct));
+
+}
+
+sortAlpha(curInv);
+
+</script>
+  </body>
+</html>
