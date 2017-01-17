@@ -14,36 +14,60 @@
 
 Use of split(): String into array.
 Use of substr(): 'abcdefghij'.substr(1,2) gives 'bc'
-parseInt() : parseInt(15.99, 10) gives 15.
+parseInt() : transform a string into integer
  */
 
 function makeFriendlyDates(arr) {
-  var test = ["2016-07-01", "2016-07-04"]; //need to convert into the format: [ [[2016],[7],[1]], [[2016],[7],[4]] ]
-  var from = [];//from + to will be arrConverted
-  var to = [];
   var arrConverted = [];
-  var start = test[0].split("-");
-  var end = test[1].split("-");
+  //fct that converts the arr in argument into an arr of Intergers
+  function arrToArr(arr) {
+    //var arr = ["2016-07-01", "2016-07-04"]; //need to convert into the format: [[20160701], [20160704]]
+    var from = [];//from + to will be arrConverted
+    var to = [];
+    var start = arr[0].split("-");
+    var end = arr[1].split("-");
 
-  for (var i = 0; i < start.length; i++) {
-    from.push(parseInt(start[i]));
+    //Use of parseInt & loop so we can compare the values later with an array of numbers
+    for (var i = 0; i < start.length; i++) {
+      from.push(start[i]);
+    }
+    for (var j = 0; j < end.length; j++) {
+      to.push(end[j]);
+    }
+    from = from.join("");
+    to = to.join("");
+    arrConverted.push(parseInt(from));
+    arrConverted.push(parseInt(to));
   }
-  for (var j = 0; j < end.length; j++) {
-    to.push(parseInt(end[j]));
-  }
 
-  arrConverted.push(from);
-  arrConverted.push(to);
-
-  console.log(arrConverted);
+  arrToArr(arr);
+  console.log(arrConverted); //[[20160701], [20160704]] 2 comparable integers
 
 
-
-  //Use of substr() on both strings of the array before converting them in Integers
-
-  //Convert the string into Integers
 
   //start applying differents logics comparying the numbers from the 2 initial strings
+  //1: If period < 1 month
+  var from = arrConverted[0];
+  var to = arrConverted[1];
+  if (to - from < 100) {
+    //console.log("period less than an month");
+    //format wanted:
+      if ((JSON.stringify(to)).substr(4,2) === (JSON.stringify(from)).substr(4,2)) { //Compare years
+        console.log("same month and same year");
+        //format wanted:
+      }
+
+  } else if (to - from < 10000) {
+  //  console.log("period less than a year");
+      if ((JSON.stringify(to)).substr(0,4) === (JSON.stringify(from)).substr(0,4)) { //compare months
+        console.log("same year");
+        //format wanted:
+      }
+
+  } else {
+    console.log("period longer than a year");
+    //format wanted: 
+  }
 
   //Reconstitute the array of string from the previous result composed of Integers
 
@@ -52,14 +76,15 @@ function makeFriendlyDates(arr) {
 }
 
 makeFriendlyDates(["2016-07-01", "2016-07-04"]);// ["July 1st","4th"].
-/*
 makeFriendlyDates(["2016-12-01", "2017-02-03"]);// ["December 1st","February 3rd"].
 makeFriendlyDates(["2016-12-01", "2018-02-03"]);// ["December 1st, 2016","February 3rd, 2018"].
+/*
 makeFriendlyDates(["2017-03-01", "2017-05-05"]);// ["March 1st, 2017","May 5th"]
 makeFriendlyDates(["2018-01-13", "2018-01-13"]);// ["January 13th, 2018"].
 makeFriendlyDates(["2022-09-05", "2023-09-04"]);// ["September 5th, 2022","September 4th"].
 makeFriendlyDates(["2022-09-05", "2023-09-05"]);// ["September 5th, 2022","September 5th, 2023"]
 */
+
 
 </script>
   </body>
