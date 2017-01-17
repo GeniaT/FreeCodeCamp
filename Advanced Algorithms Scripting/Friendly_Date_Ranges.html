@@ -6,27 +6,42 @@
   </head>
   <body>
 <script>
-/* - Les mois en toutes lettres
-- le jour en format "1st/21st/31st 2nd 3rd 4-30th"
+/* - Les mois en toutes lettres (VAR)
+- le jour en format "1st/21st/31st 2nd 3rd 4-30th" (VAR)
 - si la période < 1 an, ne pas afficher l'année
 - si la période > 1 an, afficher l'année
 - si la période < 1 mois, ne pas afficher le mois dans la ending date.
-Examples: IN: ["2016-07-01", "2016-07-04"] OUT: ["July 1st","4th"]
-IN: ["2016-07-01", "2018-07-04"] OUT:["July 1st, 2016", "July 4th, 2018"]
-IN:  */
+
+Use of split(): String into array.
+Use of substr(): 'abcdefghij'.substr(1,2) gives 'bc'
+parseInt() : parseInt(15.99, 10) gives 15.
+ */
 
 function makeFriendlyDates(arr) {
-  console.log(arr[0]);
+  var from = [];
+  var to = [];
+  var test = ["2016-07-01", "2016-07-04"];
+  //Use of substr() on both strings of the array before converting them in Integers
+
+  //Convert the string into Integers
+
+  //start applying differents logics comparying the numbers from the 2 initial strings
+
+  console.log(test[0].substr(0,4));
+  console.log(parseInt("2016"));
+  console.log(test[0].split("-"));
+  console.log(parseInt("20160701"));
 }
 
 makeFriendlyDates(["2016-07-01", "2016-07-04"]);// ["July 1st","4th"].
+/*
 makeFriendlyDates(["2016-12-01", "2017-02-03"]);// ["December 1st","February 3rd"].
 makeFriendlyDates(["2016-12-01", "2018-02-03"]);// ["December 1st, 2016","February 3rd, 2018"].
 makeFriendlyDates(["2017-03-01", "2017-05-05"]);// ["March 1st, 2017","May 5th"]
 makeFriendlyDates(["2018-01-13", "2018-01-13"]);// ["January 13th, 2018"].
 makeFriendlyDates(["2022-09-05", "2023-09-04"]);// ["September 5th, 2022","September 4th"].
 makeFriendlyDates(["2022-09-05", "2023-09-05"]);// ["September 5th, 2022","September 5th, 2023"]
-
+*/
 
 </script>
   </body>
