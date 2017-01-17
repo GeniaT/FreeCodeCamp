@@ -1,0 +1,99 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>No repeats please</title>
+  </head>
+  <body>
+<script>
+/*Return the number of total permutations of the provided string that don't
+have repeated consecutive letters. Assume that all characters in the provided string are each unique.
+
+For example, aab should return 2 because it has 6 total permutations (aab, aab, aba, aba, baa, baa),
+ but only 2 of them (aba and aba) don't have the same letter (in this case a) repeating.*/
+
+function permAlone(str) {
+  //dealing with exception
+  if (str.length === 1) {
+    return 1;
+  }
+
+  //Convert str into an array of charaters to run the permute fct on.
+  //var str = "abcd";
+  var arr = [];
+
+  for(var i = 0; i<str.length;i++) {
+    arr.push(str[i]);
+  }
+  console.log(arr);
+
+
+  //Fct to create an 2D array with subarrays being the permutations of charaters.
+  var permArr = [],
+  usedChars = [];
+
+  function permute(input) {
+      var i, ch;
+      for (i = 0; i < input.length; i++) {
+
+          ch = input.splice(i, 1)[0];
+          usedChars.push(ch);
+          if (input.length == 0) {
+            permArr.push(usedChars.slice());
+          }
+
+          permute(input);
+          input.splice(i, 0, ch);
+          usedChars.pop();
+      }
+      return permArr;
+  };
+
+  var x = permute(arr);
+
+
+
+  //fct that will convert a 2D array into a string
+  var twoDarray = x;//need to reach ("abcd efgh")
+  var oneDarray = [];
+  for (var i = 0; i<twoDarray.length; i++) {
+    oneDarray.push(twoDarray[i].join(""));
+  }
+
+  oneDarray.join("");
+  oneDarray = JSON.stringify(oneDarray); //transform the array into a string
+
+  //fct with regex that counts how many matches we have of at least 2 same characters
+  var matches = oneDarray.match(/([a-z])+\1/g).length;
+
+//factorial calculation
+
+function factorial(num) {
+    var fact=1;
+    for(var i=num;i>1;i--)
+      fact*=i;
+    console.log("factorial = " + fact);
+    console.log("factorial -  matches= " + (fact - matches)); //final result = number of total of permutations (factorial) - total of matches.
+  }
+
+
+  return factorial(str.length);
+
+
+}
+
+
+permAlone("aab"); // 2.
+/*
+permAlone("aaa"); // 0.
+permAlone("aabb");// 8.
+permAlone("abcdefa"); // 3600.
+permAlone("abfdefa"); s// 2640.
+permAlone("zzzzzzzz"); // 0.
+permAlone("a"); // 1.
+*/
+
+
+</script>
+  </body>
+</html>
