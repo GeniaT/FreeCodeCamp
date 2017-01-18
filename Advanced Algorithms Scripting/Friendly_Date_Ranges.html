@@ -43,34 +43,8 @@ function makeFriendlyDates(arr) {
   arrToArr(arr);
   console.log(arrConverted); //[[20160701], [20160704]] 2 comparable integers
 
-
-
-  //start applying differents logics comparying the numbers from the 2 initial strings
-  //1: If period < 1 month
-  var from = arrConverted[0];
-  var to = arrConverted[1];
-  var currentYear = "2016";
-
-
-  if (to - from >= 10000) {//more than a year
-    console.log("'Month xth, year' , 'Month xth, year'");
-  } else if (to - from < 10000) { //less than a year
-     if (from === to) { //if same date (exception)
-      console.log("Month xth, year");
-
-    } else if ((JSON.stringify(from)).substr(0,4) === currentYear) {
-        if ((JSON.stringify(to)).substr(4,2) === (JSON.stringify(from)).substr(4,2)) {
-          console.log("'Month xth' , 'xth'");
-        } else {
-          console.log("'Month xth' , 'Month xth'");
-        }
-
-      } else {
-        console.log("'Month xth, year' , 'Month xth'"); //just less than a year
-      }
-  }
-
-//==============================================================================
+  //declaring functions to separate years from months from days + give the most complete structure to the to and from final array.
+  //those full structures will then be sliced and joined further
   function fromNumberToText(from, to) {
     var monthsArr = ["trash","January", "February", "March","April", "May", "June", "July", "August","September","October","November","December"];
     var ordinDays = ["trash","st","nd","rd","th"];
@@ -92,7 +66,7 @@ function makeFriendlyDates(arr) {
       }
 
       fromArray.push(fromYear);
-      console.log(fromArray);
+      return fromArray;
 
     }
 
@@ -110,17 +84,61 @@ function makeFriendlyDates(arr) {
       }
 
       toArray.push(toYear);
-      console.log(toArray);
-
+      return toArray;
     }
+  //  fromInLetters(from);
+  //  toInLetters(to);
+    return [fromInLetters(from),toInLetters(to)];
 
-    fromInLetters(from);
-    toInLetters(to);
+
 
 
   }
 
-  fromNumberToText(from, to);
+
+  //start applying differents logics comparying the numbers from the 2 initial strings and running the fct fromNumberToText for right format
+  //1: If period < 1 month
+  var from = arrConverted[0];
+  var to = arrConverted[1];
+  var currentYear = "2016";
+
+
+  if (to - from >= 10000) {//more than a year
+    var finalArr = [];
+    console.log("'Month xth, year' , 'Month xth, year'");
+    var TwoDarr = fromNumberToText(from, to);
+    console.log(TwoDarr);//[["month","day","year"]["month","day","year"]]
+    finalArr.push(TwoDarr[0].join(" "));
+    finalArr.push(TwoDarr[1].join(" "));
+    console.log(finalArr);
+    return fianlArr;
+
+  } else if (to - from < 10000) { //less than a year
+
+     if (from === to) { //if same date (exception)
+      console.log("Month xth, year");
+      fromNumberToText(from, to);
+
+    } else if ((JSON.stringify(from)).substr(0,4) === currentYear) {
+
+            if ((JSON.stringify(to)).substr(4,2) === (JSON.stringify(from)).substr(4,2)) {
+              console.log("'Month xth' , 'xth'");
+              fromNumberToText(from, to);
+            } else {
+              console.log("'Month xth' , 'Month xth'");
+              fromNumberToText(from, to);
+            }
+
+      } else {
+        console.log("'Month xth, year' , 'Month xth'"); //just less than a year
+        fromNumberToText(from, to);
+      }
+  }
+
+
+
+// create a global array and push the 2 final strings to it before returning it:
+  //CODE HERE ....
 
 
 
@@ -132,9 +150,9 @@ makeFriendlyDates(["2016-12-01", "2017-02-03"]);// ["December 1st","February 3rd
 makeFriendlyDates(["2016-12-01", "2018-02-03"]);// ["December 1st, 2016","February 3rd, 2018"].
 */
 //makeFriendlyDates(["2017-03-01", "2017-05-05"]);// ["March 1st, 2017","May 5th"]
-makeFriendlyDates(["2018-01-02", "2018-01-08"]);// ["January 13th, 2018"].
+//makeFriendlyDates(["2018-01-13", "2018-01-13"]);// ["January 13th, 2018"].
 //makeFriendlyDates(["2022-09-05", "2023-09-04"]);// ["September 5th, 2022","September 4th"].
-//makeFriendlyDates(["2022-09-05", "2023-09-05"]);// ["September 5th, 2022","September 5th, 2023"]
+makeFriendlyDates(["2022-09-05", "2023-09-05"]);// ["September 5th, 2022","September 5th, 2023"]
 
 
 
