@@ -53,15 +53,20 @@ function makeFriendlyDates(arr) {
 
 
   if (to - from >= 10000) {//more than a year
+    console.log("'Month xth, year' , 'Month xth, year'");
   } else if (to - from < 10000) { //less than a year
      if (from === to) { //if same date (exception)
+      console.log("Month xth, year");
 
     } else if ((JSON.stringify(from)).substr(0,4) === currentYear) {
         if ((JSON.stringify(to)).substr(4,2) === (JSON.stringify(from)).substr(4,2)) {
+          console.log("'Month xth' , 'xth'");
         } else {
+          console.log("'Month xth' , 'Month xth'");
         }
 
       } else {
+        console.log("'Month xth, year' , 'Month xth'"); //just less than a year
       }
   }
 // implement last instruction.
