@@ -69,7 +69,61 @@ function makeFriendlyDates(arr) {
         console.log("'Month xth, year' , 'Month xth'"); //just less than a year
       }
   }
-// implement last instruction.
+
+//==============================================================================
+  function fromNumberToText(from, to) {
+    var monthsArr = ["trash","January", "February", "March","April", "May", "June", "July", "August","September","October","November","December"];
+    var ordinDays = ["trash","st","nd","rd","th"];
+    var fromArray = [];
+    var toArray = [];
+
+    function fromInLetters(from) {
+
+      var fromYear = (JSON.stringify(from)).substr(0,4);
+      var fromMonth = (JSON.stringify(from)).substr(4,2);
+      var fromDay = (JSON.stringify(from)).substr(6,2);
+
+      fromArray.push(monthsArr[parseInt(fromMonth)]);
+      //to add "st, nd, rd or th to the day"
+      if (parseInt(fromDay) <= 3) {
+        fromArray.push(parseInt(fromDay) + ordinDays[parseInt(fromDay)] + ",");
+      } else {
+        fromArray.push(parseInt(fromDay) + ordinDays[4] + ",");
+      }
+
+      fromArray.push(fromYear);
+      console.log(fromArray);
+
+    }
+
+    function toInLetters(to) {
+      var toYear = (JSON.stringify(to)).substr(0,4);
+      var toMonth = (JSON.stringify(to)).substr(4,2);
+      var toDay = (JSON.stringify(to)).substr(6,2);
+
+      toArray.push(monthsArr[parseInt(toMonth)]);
+      //to add "st, nd, rd or th to the day"
+      if (parseInt(toDay) <= 3) {
+        toArray.push(parseInt(toDay) + ordinDays[parseInt(toDay)] + ",");
+      } else {
+        toArray.push(parseInt(toDay) + ordinDays[4] + ",");
+      }
+
+      toArray.push(toYear);
+      console.log(toArray);
+
+    }
+
+    fromInLetters(from);
+    toInLetters(to);
+
+
+  }
+
+  fromNumberToText(from, to);
+
+
+
 
 }
 /*
@@ -78,7 +132,7 @@ makeFriendlyDates(["2016-12-01", "2017-02-03"]);// ["December 1st","February 3rd
 makeFriendlyDates(["2016-12-01", "2018-02-03"]);// ["December 1st, 2016","February 3rd, 2018"].
 */
 //makeFriendlyDates(["2017-03-01", "2017-05-05"]);// ["March 1st, 2017","May 5th"]
-makeFriendlyDates(["2018-01-13", "2018-01-13"]);// ["January 13th, 2018"].
+makeFriendlyDates(["2018-01-02", "2018-01-08"]);// ["January 13th, 2018"].
 //makeFriendlyDates(["2022-09-05", "2023-09-04"]);// ["September 5th, 2022","September 4th"].
 //makeFriendlyDates(["2022-09-05", "2023-09-05"]);// ["September 5th, 2022","September 5th, 2023"]
 
