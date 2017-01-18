@@ -49,42 +49,34 @@ function makeFriendlyDates(arr) {
   //1: If period < 1 month
   var from = arrConverted[0];
   var to = arrConverted[1];
-  if (to - from < 100) {
-    //console.log("period less than an month");
-    //format wanted:
-      if ((JSON.stringify(to)).substr(4,2) === (JSON.stringify(from)).substr(4,2)) { //Compare years
-        console.log("same month and same year");
-        //format wanted:
-      }
+  var currentYear = "2016";
 
-  } else if (to - from < 10000) { //period less than a year
-  //  console.log("period less than a year");
-    //format wanted: do not display the ending year: ["December 1st","February 3rd"]
-      if (((JSON.stringify(to)).substr(0,4) && (JSON.stringify(from)).substr(0,4)) === 2016) { //compare months
-        console.log("same current year");
-        //format wanted:
-      }
 
-  } else {
-    console.log("period longer than a year");
-    //format wanted: ["December 1st, 2016","February 3rd, 2018"]
+  if (to - from >= 10000) {//more than a year
+  } else if (to - from < 10000) { //less than a year
+     if (from === to) { //if same date (exception)
+
+    } else if ((JSON.stringify(from)).substr(0,4) === currentYear) {
+        if ((JSON.stringify(to)).substr(4,2) === (JSON.stringify(from)).substr(4,2)) {
+        } else {
+        }
+
+      } else {
+      }
   }
-
-  //Reconstitute the array of string from the previous result composed of Integers
-
-
+// implement last instruction.
 
 }
-
+/*
 makeFriendlyDates(["2016-07-01", "2016-07-04"]);// ["July 1st","4th"].
 makeFriendlyDates(["2016-12-01", "2017-02-03"]);// ["December 1st","February 3rd"].
 makeFriendlyDates(["2016-12-01", "2018-02-03"]);// ["December 1st, 2016","February 3rd, 2018"].
-/*
-makeFriendlyDates(["2017-03-01", "2017-05-05"]);// ["March 1st, 2017","May 5th"]
-makeFriendlyDates(["2018-01-13", "2018-01-13"]);// ["January 13th, 2018"].
-makeFriendlyDates(["2022-09-05", "2023-09-04"]);// ["September 5th, 2022","September 4th"].
-makeFriendlyDates(["2022-09-05", "2023-09-05"]);// ["September 5th, 2022","September 5th, 2023"]
 */
+//makeFriendlyDates(["2017-03-01", "2017-05-05"]);// ["March 1st, 2017","May 5th"]
+makeFriendlyDates(["2018-01-13", "2018-01-13"]);// ["January 13th, 2018"].
+//makeFriendlyDates(["2022-09-05", "2023-09-04"]);// ["September 5th, 2022","September 4th"].
+//makeFriendlyDates(["2022-09-05", "2023-09-05"]);// ["September 5th, 2022","September 5th, 2023"]
+
 
 
 </script>
