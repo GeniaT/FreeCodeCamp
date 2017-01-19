@@ -32,7 +32,7 @@ function makeFriendlyDates(arr) {
   }
 
   arrToArr(arr);
-  console.log(arrConverted); //[[20160701], [20160704]] 2 comparable integers
+  //console.log(arrConverted); //[[20160701], [20160704]] 2 comparable integers
 
   //declaring functions to separate years from months from days + give the most complete structure to the to and from final array.
   //those full structures will then be sliced and joined further
@@ -93,12 +93,17 @@ function makeFriendlyDates(arr) {
   var regex = /\,/g; //looks for , to delete it from a string
 
   function joinStrings() {
-    finalArr.push(TwoDarr[0].join(" "));
-    finalArr.push(TwoDarr[1].join(" "));
+    if (TwoDarr.length === 2) {
+      finalArr.push(TwoDarr[0].join(" "));
+      finalArr.push(TwoDarr[1].join(" "));
+    } else { //Exception when From and to dates are the same
+      finalArr.push(TwoDarr[0].join(" "));
+    }
+
   }
 
   if (to - from >= 10000) {//more than a year
-    console.log("'Month xth, year' , 'Month xth, year'");
+    //console.log("'Month xth, year' , 'Month xth, year'");
     //console.log(TwoDarr);//[["month","day","year"]["month","day","year"]]
     joinStrings();
     console.log(finalArr);
@@ -107,23 +112,37 @@ function makeFriendlyDates(arr) {
   } else if (to - from < 10000) { //less than a year
 
      if (from === to) { //if same date (exception)
-      console.log("Month xth, year");
+      //console.log("Month xth, year");
+      TwoDarr = TwoDarr.slice(0,1);
+      joinStrings();
+      console.log(finalArr);
+      return finalArr;
 
 
 
     } else if ((JSON.stringify(from)).substr(0,4) === currentYear) {
 
             if ((JSON.stringify(to)).substr(4,2) === (JSON.stringify(from)).substr(4,2)) {
-              console.log("'Month xth' , 'xth'");
+              //console.log("'Month xth' , 'xth'");
+              TwoDarr[0] = TwoDarr[0].slice(0,2);
+              TwoDarr[1] = TwoDarr[1].slice(0,2);//removing year
+              TwoDarr[1] = TwoDarr[1].slice(1,2);//removing month
+              //removing ","
+              TwoDarr[0] = TwoDarr[0].map(function(x){ return x.replace(/,/g,""); });
+              TwoDarr[1] = TwoDarr[1].map(function(x){ return x.replace(/,/g,""); });
+
+              joinStrings();
+              console.log(finalArr);
+              return finalArr;
 
             } else {
-              console.log("'Month xth' , 'Month xth'");
+              //console.log("'Month xth' , 'Month xth'");
               //removing the years
               TwoDarr[0] = TwoDarr[0].slice(0,2);
               TwoDarr[1] = TwoDarr[1].slice(0,2);
               //Removing the ','
-              TwoDarr[0] = TwoDarr[0].map(function(x){ return x.replace(/,/g,"") });
-              TwoDarr[1] = TwoDarr[1].map(function(x){ return x.replace(/,/g,"") });
+              TwoDarr[0] = TwoDarr[0].map(function(x){ return x.replace(/,/g,""); });
+              TwoDarr[1] = TwoDarr[1].map(function(x){ return x.replace(/,/g,""); });
 
               joinStrings();
               console.log(finalArr);
@@ -131,29 +150,28 @@ function makeFriendlyDates(arr) {
             }
 
       } else {
-        console.log("'Month xth, year' , 'Month xth'"); //just less than a year
+        //console.log("'Month xth, year' , 'Month xth'"); //just less than a year
+        //removing the years
+        TwoDarr[1] = TwoDarr[1].slice(0,2);
+        //Removing the ','
+        TwoDarr[1] = TwoDarr[1].map(function(x){ return x.replace(/,/g,""); });
 
+        joinStrings();
+        console.log(finalArr);
+        return finalArr;
       }
   }
 
-
-
-// create a global array and push the 2 final strings to it before returning it:
-  //CODE HERE ....
-
-
-
-
 }
 
-//makeFriendlyDates(["2016-07-01", "2016-07-04"]);// ["July 1st","4th"].
+makeFriendlyDates(["2016-07-01", "2016-07-04"]);// ["July 1st","4th"].
 makeFriendlyDates(["2016-12-01", "2017-02-03"]);// ["December 1st","February 3rd"].
-//makeFriendlyDates(["2016-12-01", "2018-02-03"]);// ["December 1st, 2016","February 3rd, 2018"].
+makeFriendlyDates(["2016-12-01", "2018-02-03"]);// ["December 1st, 2016","February 3rd, 2018"].
 
-//makeFriendlyDates(["2017-03-01", "2017-05-05"]);// ["March 1st, 2017","May 5th"]
-//makeFriendlyDates(["2018-01-13", "2018-01-13"]);// ["January 13th, 2018"].
-//makeFriendlyDates(["2022-09-05", "2023-09-04"]);// ["September 5th, 2022","September 4th"].
-//makeFriendlyDates(["2022-09-05", "2023-09-05"]);// ["September 5th, 2022","September 5th, 2023"]
+makeFriendlyDates(["2017-03-01", "2017-05-05"]);// ["March 1st, 2017","May 5th"]
+makeFriendlyDates(["2018-01-13", "2018-01-13"]);// ["January 13th, 2018"].
+makeFriendlyDates(["2022-09-05", "2023-09-04"]);// ["September 5th, 2022","September 4th"].
+makeFriendlyDates(["2022-09-05", "2023-09-05"]);// ["September 5th, 2022","September 5th, 2023"]
 
 
 
