@@ -1,5 +1,6 @@
 /* Scenarios:
-- the user makes a basis aperation type a * b
+- the user makes a basis aperation type a * b with one digits
+- same but multi digit
 - the user writes a long chained operation before pushing =
 - the user writes a chained operation but use = at each operation to check the result
 - the user wants to CleanAll to restart his operation
@@ -8,28 +9,23 @@
 //operations:
 
 var base; //base represents result aswell.
-var nbr;
+var nbr = "";
 var opToExecute; //add, sub, div, mult
 
-
 function add(nbr) {
-  //var basis = typeof basis === "undefined" ? base : basis;
-  base = base + nbr;
+  base = Number(base) + Number(nbr);
 }
 
 function sub(nbr) {
-  //var basis = typeof basis === "undefined" ? base : basis;
-  base = base - nbr;
+  base = Number(base) - Number(nbr);
 }
 
 function mul(nbr) {
-  //var basis = typeof basis === "undefined" ? base : basis;
-  base = base * nbr;
+  base = Number(base) * Number(nbr);
 }
 
 function div(nbr) {
-  //var basis = typeof basis === "undefined" ? base : basis;
-  base = base / nbr;
+  base = Number(base) / Number(nbr);
 }
 
 function CleanAll() {
@@ -39,17 +35,27 @@ function CleanAll() {
 //events
 $(".number").click(function () {
 
-  nbr = parseInt(this.id);
+  nbr += this.id;
   console.log(nbr);
 
-  base = typeof base === "undefined" ? nbr : base; //if base undefined, set it to nbr s
-  console.log(base);
 });
 
 $(".operation").click(function () {
   console.log(this.id);
   opToExecute = this.id;
-  base = typeof base === "undefined" ? 0 : base; //if base undefined, set it to 0
+  base = typeof base === "undefined" ? nbr : base; //if base undefined, set it to 0
+  if (typeof base === "undefined") {
+    if (nbr === "") {
+      base = 0;
+    } else {
+      base = nbr;
+    }
+  }
+
+    nbr = ""; //reset of nbr now that base has a value
+
+
+
 });
 
 $("#calculate").click(function () {
@@ -68,17 +74,3 @@ $("#calculate").click(function () {
     console.log(base); //result
   }
 });
-//tests...
-
-/*
-add(20);
-console.log(base);
-sub(10);
-console.log(base);
-mul(2);
-console.log(base);
-div(2);
-console.log(base);
-div(2);
-console.log(base);
-*/
