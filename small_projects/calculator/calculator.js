@@ -13,20 +13,21 @@ var nbr = "";
 var opToExecute; //add, sub, div, mult
 
 function add(nbr) {
-  base = Number(base) + Number(nbr);
+  base = Math.round((Number(base) + Number(nbr))*1000) / 1000;
 }
 
 function sub(nbr) {
-  base = Number(base) - Number(nbr);
+  base = Math.round((Number(base) - Number(nbr))*1000) / 1000;
 }
 
 function mul(nbr) {
-  base = Number(base) * Number(nbr);
+  base = Math.round(((Number(base) * Number(nbr))*1000)) / 1000;
 }
 
 function div(nbr) {
-  base = Number(base) / Number(nbr);
+  base = Math.round(((Number(base) / Number(nbr))*1000)) / 1000;
 }
+
 
 function clear() {
   base = null;
@@ -41,8 +42,9 @@ $(".number").click(function () {
 $(".operation").click(function () {
   console.log(this.id);
   opToExecute = this.id;
-  //base = typeof base === "undefined" ? nbr : base; //if base undefined, set it to 0
+
   base = base === null ? nbr : base; //if base = null,we give it the value of nbr, otherwise it keeps its same value
+  //check if we are in the beginning of the operation
   if (base === null) {
     if (nbr === "") {
       base = 0;
@@ -61,6 +63,12 @@ $("#clear").click(function () {
   clear();
 });
 
+$("#percent").click(function () {
+  base = base === null ? nbr : base; //if base = null,we give it the value of nbr, otherwise it keeps its same value
+  base = Number(base) / 100;
+  console.log(base);
+})
+
 $("#calculate").click(function () {
 
   if (opToExecute === "add") {
@@ -75,6 +83,9 @@ $("#calculate").click(function () {
   } else if (opToExecute === "div") {
     div(nbr);
     console.log(base); //result
+  } else if (opToExecute === "percent") {
+    percent(nbr);
+    console.log(base);
   }
 });
 
@@ -82,6 +93,5 @@ $("#calculate").click(function () {
 //random tests
 
 /* to do:
-deal with results like "3,100000000005"
 make possible to calculate results when pushing an additional operation instead of "equal"
 */
