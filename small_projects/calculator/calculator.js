@@ -28,16 +28,13 @@ function div(nbr) {
   base = Number(base) / Number(nbr);
 }
 
-function CleanAll() {
-  base = 0;
+function clear() {
+  //to define...
 }
 
 //events
 $(".number").click(function () {
-
   nbr += this.id;
-  console.log(nbr);
-
 });
 
 $(".operation").click(function () {
@@ -56,6 +53,10 @@ $(".operation").click(function () {
 
 
 
+});
+
+$("#clear").click(function () {
+  clear();
 });
 
 $("#calculate").click(function () {
