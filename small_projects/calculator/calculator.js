@@ -8,7 +8,7 @@
 
 //operations:
 
-var base; //base represents result aswell.
+var base = null; //base represents result aswell.
 var nbr = "";
 var opToExecute; //add, sub, div, mult
 
@@ -29,7 +29,8 @@ function div(nbr) {
 }
 
 function clear() {
-  //to define...
+  base = null;
+  nbr = "";
 }
 
 //events
@@ -40,8 +41,9 @@ $(".number").click(function () {
 $(".operation").click(function () {
   console.log(this.id);
   opToExecute = this.id;
-  base = typeof base === "undefined" ? nbr : base; //if base undefined, set it to 0
-  if (typeof base === "undefined") {
+  //base = typeof base === "undefined" ? nbr : base; //if base undefined, set it to 0
+  base = base === null ? nbr : base; //if base = null,we give it the value of nbr, otherwise it keeps its same value
+  if (base === null) {
     if (nbr === "") {
       base = 0;
     } else {
@@ -75,3 +77,11 @@ $("#calculate").click(function () {
     console.log(base); //result
   }
 });
+
+
+//random tests
+
+/* to do:
+deal with results like "3,100000000005"
+make possible to calculate results when pushing an additional operation instead of "equal"
+*/
