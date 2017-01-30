@@ -152,7 +152,10 @@ $("#calculate").click(function () {
 //random tests
 
 /* to do:
--
+- div that shows the screen of calculator
+- add jquery to push numbers in it
+- find good css for buttons
+- add the rest of css for global design
 
 bugs on calculator example:
   2+3/2 = 2,5 but should be 3,5 as multiplication/division has priority.
