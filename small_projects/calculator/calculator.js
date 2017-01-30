@@ -34,11 +34,25 @@ function clear() {
     base = null;
     nbr = "";
     opChain = [];
+    lineOne("0");
+    $(".lineTwo").html("");
+    resultFound = "no";
+}
+
+function lineOne(char) {
+  $(".lineOne").html(char);
+}
+
+function lineTwo(char) {
+  $(".lineTwo").append(char);
 }
 
 //events
 $(".number").click(function () {
     nbr += this.id;
+    lineOne(nbr);
+    lineTwo(nbr);
+
 });
 
 $(".operation").click(function () {
@@ -59,7 +73,7 @@ $(".operation").click(function () {
     }
 
     nbr = ""; //reset of nbr now that base has a value
-
+    lineTwo(this.innerHTML);
 
 });
 
@@ -76,9 +90,12 @@ $("#percent").click(function () {
     nbr = "";//to avoid duplicate in the push with operation class
 
     console.log(base);
+    lineOne(base);
+    lineTwo("%");
 })
 
 $("#calculate").click(function () {
+  resultFound = "yes";//used to start the 2nd line on screen from the last result (base)
 
   if (opChain.length === 3) { //if simple operation
       if (opToExecute === "add") {
@@ -144,6 +161,9 @@ $("#calculate").click(function () {
       }
   }
 
+  //now that the result is know, display it on the screen
+  lineOne(base);
+  lineTwo("=" + base);
 
 
 });
@@ -152,7 +172,11 @@ $("#calculate").click(function () {
 //random tests
 
 /* to do:
--
+- div that shows the screen of calculator
+- add jquery to push numbers in it
+- find good css for buttons
+- add the rest of css for global design
+- deal with  the scenario when multiple operators are clicked, the last should be taken into account
 
 bugs on calculator example:
   2+3/2 = 2,5 but should be 3,5 as multiplication/division has priority.
