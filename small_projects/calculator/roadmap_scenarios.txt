@@ -1,0 +1,49 @@
+Faire une addition
+  1 - je peut cliquer jusqu'à 8 charactères
+  2 - ensuite j'appuie sur "+"
+  3 - encore un nombre de mon choix (8 char max)
+  4 - Je peux continuer en réappuyant sur + pour faire une opération en chaîne
+  5 - j'appuie sur "=" pour afficher le résultat
+  6 - A tout moment, je peux appuyer sur C pour recommencer le calcul de Zéro
+
+  1.1 - le nombre peut avoir une virgule mais qu'une seule!
+  1.2 - A chaque caractère, il s'affiche à la 1ère ligne de l'écran
+  1.3 - si plus de 8 charactères sont tapés, l'excès n'est pas pris en compte sur la 1ère ligne
+  1.4 - sur la 2ème ligne on affiche "Limit To 8 Characters"
+  1.5 - L'atteinte de la limite n'empêche pas l'exécution de l'opération.
+
+  2.1 - si je réappuie sur +, rien n'autre ne se passe
+  2.2 - le signe "+" s'ajoute au nombre précédemment saisi sur la ligne 2 de l'écran
+
+  3.1 - peut avoir une virgule
+  3.2 - A chaque caractère, il s'affiche à la 1ère ligne de l'écran
+
+  4.1 - Le "+" ne peut être valide dans ce cas que s'il est précédé d'un nombre
+  4.2 - le signe "+" s'ajoute au nombre précédemment saisi sur la ligne 2 de l'écran
+
+  5.1 - si le résultat fait plus de 8 charactères, j'arrondis pour afficher un résultat
+  5.2 - sur la 1ère ligne s'affichera le résultat final uniquement
+  5.3 - sur la 2ème, l'opération entière avec le résultat final. ex: 3 + 2 + 4 = 9
+  5.4 - Appuyer sur "=" met fin à l'opération, vérifier si des données internes doivent être reset
+  5.5 - Si on appuie sur un chiffre après "=", on clear toutes les données pour recommencer de 0;
+  5.6 - si on appuie sur un signe + après "=", on prendre comme base de calcul le résultat obtenu après "="
+
+  6.1 - On affiche alors 0 sur les 2 lignes de l'écran
+  6.2 - Toutes les données internes reviennent à leur état initial
+
+  ===============================================================================
+  Code plan
+
+  A - a function for various input controls
+    - The dot
+    - the numbers length
+    - the "0" in front of numbers
+
+
+  B - a function with all operations
+    - "=" "%" and Clear included
+  C - a function preparing data for the operational function
+    - converting string into numbers, digit limit, decimals limit,...
+  D - a function that will display characters in the screen (mostly jQuery)
+    D1 - a fct for 1st line
+    D2 - a fct for 2nd line

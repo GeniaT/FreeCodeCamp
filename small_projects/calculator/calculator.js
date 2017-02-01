@@ -9,9 +9,11 @@
 //operations:
 
 var base = null; //base represents result aswell.
-var nbr = "";
+var nbr = ""; //set as a string so we can store a multi digit number as string first.
 var opToExecute; //add, sub, div, mult
 var opChain = []; //used for chained operations like 2+4-7x3=? ther array will be like [1,"+",3,"-",2,"x",4,"+",2,"/",3]
+var userInput = []; //used to check if a =, . or special cases were pushed and behavior must be adapted.
+var dotInOp = "no";
 
 function add(nbr) {
     base = Math.round((Number(base) + Number(nbr))*1000) / 1000;
@@ -36,7 +38,6 @@ function clear() {
     opChain = [];
     lineOne("0");
     $(".lineTwo").html("");
-    resultFound = "no";
 }
 
 function lineOne(char) {
@@ -49,9 +50,20 @@ function lineTwo(char) {
 
 //events
 $(".number").click(function () {
+  console.log(dotInOp);
+  if (this.id !== ".") {
     nbr += this.id;
     lineOne(nbr);
     lineTwo(nbr);
+  } else if (dotInOp === "no") { //meaning its a point
+    console.log("inside");
+    dotInOp = "yes";
+    console.log(dotInOp);
+    nbr += this.id;
+    lineOne(nbr);
+    lineTwo(nbr);
+  }
+
 
 });
 
@@ -62,8 +74,13 @@ $(".operation").click(function () {
       opChain.push(Number(nbr));//Pushing now coz the nbr has been typed
     }
 
-    opChain.push(opToExecute);//for chained operations
-    console.log(opChain);
+    //avoid pushing in the chain multiple operation without numbers between like "add sub mul" instead of "add 2 mul 3 sub 4"
+    if ((opChain[opChain.length-1] !== "add") && (opChain[opChain.length-1] !== "sub") && (opChain[opChain.length-1] !== "mul") && (opChain[opChain.length-1] !== "div")) {
+      opChain.push(opToExecute);//for chained operations
+      lineTwo(this.innerHTML);
+      console.log(opChain);
+    }
+
 
     base = base === null ? nbr : base; //if base = null,we give it the value of nbr, otherwise it keeps its same value
 
@@ -73,7 +90,6 @@ $(".operation").click(function () {
     }
 
     nbr = ""; //reset of nbr now that base has a value
-    lineTwo(this.innerHTML);
 
 });
 
@@ -95,7 +111,6 @@ $("#percent").click(function () {
 })
 
 $("#calculate").click(function () {
-  resultFound = "yes";//used to start the 2nd line on screen from the last result (base)
 
   if (opChain.length === 3) { //if simple operation
       if (opToExecute === "add") {
@@ -172,8 +187,6 @@ $("#calculate").click(function () {
 //random tests
 
 /* to do:
-- div that shows the screen of calculator
-- add jquery to push numbers in it
 - find good css for buttons
 - add the rest of css for global design
 - deal with  the scenario when multiple operators are clicked, the last should be taken into account
