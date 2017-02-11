@@ -11,6 +11,7 @@ Faire une addition
   1.3 - si plus de 8 charactères sont tapés, l'excès n'est pas pris en compte sur la 1ère ligne
   1.4 - sur la 2ème ligne on affiche "Limit To 8 Characters"
   1.5 - L'atteinte de la limite n'empêche pas l'exécution de l'opération.
+  1.6 - Si je clique sur plusieurs zero au début, rien ne change.
 
   2.1 - si je réappuie sur +, rien n'autre ne se passe
   2.2 - le signe "+" s'ajoute au nombre précédemment saisi sur la ligne 2 de l'écran
@@ -39,11 +40,15 @@ Faire une addition
     - the numbers length
     - the "0" in front of numbers
 
+  B - a function preparing data for the operational function
+      - converting string into numbers, digit limit, decimals limit,...
 
-  B - a function with all operations
+  C - a function with all operations
     - "=" "%" and Clear included
-  C - a function preparing data for the operational function
-    - converting string into numbers, digit limit, decimals limit,...
+    - potentially composed of sub functions add/sub etc
+
   D - a function that will display characters in the screen (mostly jQuery)
     D1 - a fct for 1st line
     D2 - a fct for 2nd line
+
+  E - a function giving the final result
