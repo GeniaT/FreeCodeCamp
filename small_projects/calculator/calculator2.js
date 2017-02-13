@@ -9,10 +9,8 @@ var secondLineChars = "";
 function inputControl (key) {
 
     if ((Number(key) >= 0 && Number(key) <= 9)) {
-          if ((userInput.length < 8) && (arrForCalcul[arrForCalcul.length-1] !== "%")) {       //limit for the screen and no dots yet
-            if ((Number(key) === 0) && (userInput.length === 0)) { //Avoid displaying multiple zeros on the screen
-              return;
-            } else if ((Number(key) === 0) && (userInput[userInput.length - 1]) === "%") {
+          if ((userInput.length < 8) && (arrForCalcul[arrForCalcul.length-1] !== "%")) {       //limit for the screen
+            if ((Number(key) === 0) && (userInput.length === 1) && userInput[0] === "0") { //Avoid displaying multiple zeros on the screen before the decimals
               return;
             } else {
               userInput.push(key);
@@ -137,6 +135,7 @@ $("#calculate").click(function () {
 });
 
 /*good to add later
+  deal with 0.1 in the middle of an operation like: 2+3-5%x3.2-1= (instead of 2+3-5%x3.2-0.1=)
   clear/reduce the code
   add the possibility to start operation by a sign and not a number
   add a 3rd line for the various error/alert messages
