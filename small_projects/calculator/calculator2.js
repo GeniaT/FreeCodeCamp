@@ -5,6 +5,7 @@ var arrForCalcul = [];
 //vars for screen display
 var firstLineChars = "";
 var secondLineChars = "";
+var result; //for calculations inside fcts
 
 function inputControl (key) {
 
@@ -46,6 +47,7 @@ function inputControl (key) {
             firstLineChars = "";
           }
     } else if ( key === "%") {
+          //push the number before the % to the array for calcul
           if (userInput.length > 0) {
             arrForCalcul.push(Number(userInput.join("")));
             userInput = [];
@@ -64,26 +66,25 @@ function inputControl (key) {
           }
           displaySecondLine(key);
           firstLineChars = "";
-          secondLineChars = "";
     }
 
 }
 
 
 function add(nbr1, nbr2) {
-  var result = Math.round((nbr1 + nbr2) * 1000) / 1000;
+  result = Math.round((nbr1 + nbr2) * 1000) / 1000;
 }
 
 function sub(nbr1, nbr2) {
-  var result = Math.round((nbr1 - nbr2) * 1000) / 1000;
+  result = Math.round((nbr1 - nbr2) * 1000) / 1000;
 }
 
 function mul(nbr1, nbr2) {
-  var result = Math.round((nbr1 * nbr2) * 1000) / 1000;
+  result = Math.round((nbr1 * nbr2) * 1000) / 1000;
 }
 
 function div(nbr1, nbr2) {
-  var result = Math.round((nbr1 / nbr2) * 1000) / 1000;
+  result = Math.round((nbr1 / nbr2) * 1000) / 1000;
 }
 
 
@@ -109,34 +110,66 @@ function clear () {
 
 function calculateResult() {
   //reduce the array of chained operations by calculating first the %
-
+  while (arrForCalcul.indexOf("%") !== -1) {
+    arrForCalcul.splice(arrForCalcul.indexOf("%")-1, 2, (arrForCalcul[arrForCalcul.indexOf("%")-1])/100); //we pass from [5, "+", 3, "%", "-", 2] to [5, "+", 0.03, "-", 2]
+  }
   //Then the * and /
+  while (arrForCalcul.indexOf("x") !== -1) {
+    nbr1 = arrForCalcul[arrForCalcul.indexOf("x")-1];
+    nbr2 = arrForCalcul[arrForCalcul.indexOf("x")+1];
+    mul(nbr1,nbr2);
+    arrForCalcul.splice(arrForCalcul.indexOf("x")-1, 3,result);
+  }
 
-  //then + and -
+  while (arrForCalcul.indexOf("/") !== -1) {
+    nbr1 = arrForCalcul[arrForCalcul.indexOf("/")-1];
+    nbr2 = arrForCalcul[arrForCalcul.indexOf("/")+1];
+    div(nbr1,nbr2);
+    arrForCalcul.splice(arrForCalcul.indexOf("/")-1, 3,result);
+  }
 
-  //return a final value
+  //then + and -. Subs should be done before additions! if not, wrong results. example: 3%-2x3+4/2+1-3x4+5%
+  while (arrForCalcul.indexOf("-") !== -1) {
+    nbr1 = arrForCalcul[arrForCalcul.indexOf("-")-1];
+    nbr2 = arrForCalcul[arrForCalcul.indexOf("-")+1];
+    sub(nbr1,nbr2);
+    arrForCalcul.splice(arrForCalcul.indexOf("-")-1, 3,result);
+  }
+
+  while (arrForCalcul.indexOf("+") !== -1) {
+    nbr1 = arrForCalcul[arrForCalcul.indexOf("+")-1];
+    nbr2 = arrForCalcul[arrForCalcul.indexOf("+")+1];
+    add(nbr1,nbr2);
+    arrForCalcul.splice(arrForCalcul.indexOf("+")-1, 3,result);
+  }
+
 }
 
 
 $(".key").click(function () {
   inputControl(this.innerHTML);
-  console.log(userInput);
-  console.log(arrForCalcul);
 });
 
 $("#calculate").click(function () {
   var lastInput = arrForCalcul[arrForCalcul.length-1];
   if ((lastInput === "-" || lastInput === "x" || lastInput === "/" || lastInput === "+") && userInput.length === 0) {
-    return;
+    return; //disabling = when preceded by a sign
   } else {
-    console.log("supposed to calculate now");
     calculateResult();
+    //Once we have the final result, we display it on the line 1 and reset the variables for next inputs
+    $(".lineOne").html(arrForCalcul[0]);
+    userInput = [];
+    //adding the result to line 2 after the sign "="
+    secondLineChars += arrForCalcul[0];
+    $(".lineTwo").html(secondLineChars);
+    arrForCalcul = [];
+    secondLineChars = "";
   }
 });
 
 /*good to add later
-  deal with 0.1 in the middle of an operation like: 2+3-5%x3.2-1= (instead of 2+3-5%x3.2-0.1=)
   clear/reduce the code
   add the possibility to start operation by a sign and not a number
   add a 3rd line for the various error/alert messages
+  add a limit for chained operations depending on the length permitted by the css
 */
