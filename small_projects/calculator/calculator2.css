@@ -1,0 +1,45 @@
+/* to do:
+  push effect on buttons via translateY http://www.w3schools.com/css/tryit.asp?filename=trycss_buttons_animate3
+  center the calculator on the screen
+  move slightly to left the numbers so it doesnt stick to the border
+  find a good police for the characters
+*/
+
+.calculator {
+  position:relative;
+  border:1px solid black;
+  border-radius:0.2em;
+  width:15em;
+  height:22em;
+  background-color:#F5E7BA;
+}
+
+.screen_buttons {
+  position:absolute;
+  padding:1em;
+}
+.btn {
+  width: 3em;
+  margin-top:0.5em;
+}
+
+.btn-danger, .btn-warning {
+  width:6.3em;
+}
+
+.screen {
+  background-color:#e0e0eb;
+  border:1px solid black;
+  border-radius:0.2em;
+  width:12.9em;
+}
+
+.lineOne {
+  font-size:2.5em;
+  text-align:right;
+}
+
+.lineTwo {
+  font-size:1em;
+  text-align:right;
+}
