@@ -18,7 +18,7 @@ html body { /*wierd way to background all the page*/
 
 .screen_buttons {
   position:absolute;
-  padding:0.8em;
+  padding:0.9em;
 }
 .btn {
   width: 3em;
