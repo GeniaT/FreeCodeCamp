@@ -39,11 +39,14 @@ function inputControl (key) {
             userInput = [];           //clearing the userInput so we can build a new string of digits
           }
           displayFirstLine(key);
-          displaySecondLine(key);
+          //we add a sign on 2nd line only if there is no one yet:
+          if (secondLineChars[secondLineChars.length-1] !== "+" && secondLineChars[secondLineChars.length-1] !== "-" &&
+              secondLineChars[secondLineChars.length-1] !== "x" && secondLineChars[secondLineChars.length-1] !== "/" ) {
+            displaySecondLine(key);
+          }
           if (firstLineChars.length > 0) { //after the displayFirstLine fct run, we clear the variable
             firstLineChars = "";
           }
-
     } else if ( key === "%") {
           if (userInput.length > 0) {
             arrForCalcul.push(Number(userInput.join("")));
@@ -56,6 +59,14 @@ function inputControl (key) {
           }
     } else if (key === "C") {
           clear();
+    } else if (key === "=") {
+          firstLineChars = "";
+          if (userInput.length > 0) { // I only push into another arr if userInput isnt empty
+            arrForCalcul.push(Number(userInput.join(""))); //we push as a number the multi digit in the arr for later calculation
+          }
+          displaySecondLine(key);
+          firstLineChars = "";
+          secondLineChars = "";
     }
 
 }
@@ -93,10 +104,8 @@ function clear () {
   }
 
   function displaySecondLine(key) {
-    var secondLine = arrForCalcul.join("");
-    if (arrForCalcul.length > 0) {
-      $(".lineTwo").html(secondLine);
-    }
+    secondLineChars += key;
+    $(".lineTwo").html(secondLineChars);
   }
 
 
@@ -115,9 +124,20 @@ $(".key").click(function () {
   inputControl(this.innerHTML);
   console.log(userInput);
   console.log(arrForCalcul);
-  console.log(firstLineChars);
 });
 
 $("#calculate").click(function () {
-  calculateResult();
+  var lastInput = arrForCalcul[arrForCalcul.length-1];
+  if ((lastInput === "-" || lastInput === "x" || lastInput === "/" || lastInput === "+") && userInput.length === 0) {
+    return;
+  } else {
+    console.log("supposed to calculate now");
+    calculateResult();
+  }
 });
+
+/*good to add later
+  clear/reduce the code
+  add the possibility to start operation by a sign and not a number
+  add a 3rd line for the various error/alert messages
+*/
