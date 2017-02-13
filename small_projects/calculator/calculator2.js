@@ -21,12 +21,14 @@ function inputControl (key) {
           }
 
     } else if ((key === ".") && (userInput.indexOf(key) === (-1))) {
-      if (userInput.length === 0) { //avoiding dots after % like 4%. resulting in a NaN later
-        return;
-      } else {
-        userInput.push(key);
-        displayFirstLine(key);
-        displaySecondLine(key);
+      if (userInput.length < 8) {
+        if (userInput.length === 0) { //avoiding dots after % like 4%. resulting in a NaN later
+          return;
+        } else {
+          userInput.push(key);
+          displayFirstLine(key);
+          displaySecondLine(key);
+        }
       }
     } else if (key === "/" || key === "x" || key === "+" || key === "-") {
           firstLineChars = ""; //we repplace the 1st line with the operational sign
@@ -157,11 +159,21 @@ $("#calculate").click(function () {
   } else {
     calculateResult();
     //Once we have the final result, we display it on the line 1 and reset the variables for next inputs
-    $(".lineOne").html(arrForCalcul[0]);
+    if (arrForCalcul[0].length <= 8) {
+      $(".lineOne").html(arrForCalcul[0]);
+    } else {
+      $(".lineOne").html("0");
+      $(".lineTwo").html("Digits limit reached");
+    }
     userInput = [];
     //adding the result to line 2 after the sign "="
     secondLineChars += arrForCalcul[0];
-    $(".lineTwo").html(secondLineChars);
+    if (secondLineChars.length <= 22) { //estimated nbr of characters that can fit the 2nd line with css updated
+      $(".lineTwo").html(secondLineChars);
+    } else {
+      $(".lineOne").html("0");
+      $(".lineTwo").html("Digits limit reached");
+    }
     arrForCalcul = [];
     secondLineChars = "";
   }
@@ -172,4 +184,7 @@ $("#calculate").click(function () {
   add the possibility to start operation by a sign and not a number
   add a 3rd line for the various error/alert messages
   add a limit for chained operations depending on the length permitted by the css
+
+  after a digit reached, a normal operation like 2+3 = 5 can be done. Atm the line 1 displays 0
+  prevent the excess of digits on line 2 when pushing the buttons
 */
