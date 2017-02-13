@@ -52,3 +52,12 @@ Faire une addition
     D2 - a fct for 2nd line
 
   E - a function giving the final result
+
+  ===============================================================================
+  I can:
+    4% + 0.1
+    0.0001 + ...
+  I can't:
+    000 + ..
+    00.1 + ...
+  Qd je clic sur 0 avant la décimale, je ne peux le faire qu'une fois.
