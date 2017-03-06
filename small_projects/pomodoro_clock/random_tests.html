@@ -1,0 +1,128 @@
+<!doctype html>
+<head>
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+</head>
+<body>
+  <button class="bro">test me!</button>
+  <button class="timeout">Wait a bit</button>
+  <a href="http://www.google.be">click this url</a>
+  <button class="triggerIntervals">Trigger Intervals</button>
+  <button class="stopIntervals">Stop Intervals</button><br><br>
+
+  <label>Pomodoro duration</label><br>
+  <select name="pomodoro_duration">
+    <option>5mins</option>
+    <option>10mins</option>
+    <option>15mins</option>
+    <option>20mins</option>
+    <option>25mins</option>
+    <option>30mins</option>
+    <option>40mins</option>
+    <option>50mins</option>
+    <option>60mins</option>
+  </select><br><br>
+  <label>Break duration</label><br>
+  <select name="break_duration">
+    <option>5mins</option>
+    <option>10mins</option>
+    <option>15mins</option>
+    <option>20mins</option>
+    <option>25mins</option>
+    <option>30mins</option>
+  </select><br>
+
+  <div class="choosenNumber">99</div>
+  <button class="toZero">Go to zero</button>
+
+  <div class="timerSimulation">2</div>
+  <button class="timer">Show the timer!</button><br><br>
+
+  <script>
+  //setTimeout tests
+    function wait() {
+      console.log("thanks for waiting!");
+    }
+
+    $(".bro").click( function() {
+      console.log("it works");
+    });
+
+    $(".timeout").click(function () {
+      setTimeout(wait, 3000); //setTimeout should be inside a "fct declaration" like this. click(setTimeout(wait,3000)) won't work.
+    });
+
+//setIntervals tests
+    var i = 0;
+    function intervals() {
+      console.log("Each second, I write thanks to setIntervals. i = " + i);
+      i += +1;
+    }
+    $(".triggerIntervals").click(function() {
+      var x = setInterval(intervals, 1000);
+      $(".stopIntervals").click(function() {
+        clearInterval(x); //clear has to be in the same scope than x. can be used as "pause/break" or "reset" if we clear the variables from setInterval (i) in the pomodoro.
+      });
+    });
+//testing time formats (shouldnt be needed)
+   var date = new Date(null);
+   console.log(date);
+   date.setSeconds(2000); // specify value for SECONDS here
+   console.log(date);
+   date.toISOString().substr(11, 8);
+   console.log(date);
+
+//Converting a number into SECONDS
+  var millSec = 3000;
+  var mins = 5;
+  if (millSec !== null) {
+    var sec = millSec / 1000;
+  } else if (mins !== null) {
+    var sec = mins * 60;
+  }
+//make number go from x to 0 like a timer each second
+$(".choosenNumber").html("5");
+
+var forTimer = Number($(".choosenNumber").html());
+
+$(".toZero").click(function() {
+  var interval = setInterval(function() {
+
+    if (forTimer > 0) {
+      forTimer -= 1;
+      console.log(forTimer);
+      if (forTimer === 0) {
+        console.log("the Timer is stopping!");
+      }
+      $(".choosenNumber").html(forTimer);
+    } else if (forTimer === 0) {
+      clearInterval(interval); //We stop the "timer" once 0 is reached
+    }
+  },1000)
+});
+
+//update the HTML page with a format xx:yy after a 1 or 2 digit number has been selected
+  var workingTimer = Number($(".timerSimulation").html());
+  var mins = workingTimer;
+  var secs = Number("15");
+  var newFormat = mins + " : " + secs;
+  $(".timer").click(function() {
+    $(".timerSimulation").html(newFormat);
+    var interval2 = setInterval(function() {
+
+      if (secs > 0) {
+        secs -= 1;
+        console.log(secs);
+        if (secs === 0) {
+          console.log("the Timer is stopping!");
+        }
+        $(".timerSimulation").html("0" + workingTimer + " : " + secs);
+      } else if (secs === 0) {
+        $(".timerSimulation").html("0" + workingTimer + " : 0" + secs);
+        clearInterval(interval2); //We stop the "timer" once 0 is reached
+      }
+    },1000)
+  });
+
+
+  </script>
+</body>
