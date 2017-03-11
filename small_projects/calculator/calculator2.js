@@ -6,7 +6,6 @@ var arrForCalcul = [];
 var firstLineChars = "";
 var secondLineChars = "";
 var result; //for calculations inside fcts
-
 function inputControl (key) {
     if (secondLineChars.length <= 18) { //checking the length of the second line so we don't go outside the calculator screen
 
@@ -129,7 +128,7 @@ function calculateResult() {
     arrForCalcul.splice(arrForCalcul.indexOf("%")-1, 2, (arrForCalcul[arrForCalcul.indexOf("%")-1])/100); //we pass from [5, "+", 3, "%", "-", 2] to [5, "+", 0.03, "-", 2]
   }
   //Then the * and /
-  while (arrForCalcul.indexOf("x") !== -1) {
+  while (arrForCalcul.indexOf("x") !== -1) { //while there is a x in the array...
     nbr1 = arrForCalcul[arrForCalcul.indexOf("x")-1];
     nbr2 = arrForCalcul[arrForCalcul.indexOf("x")+1];
     mul(nbr1,nbr2);
@@ -200,4 +199,5 @@ $("#calculate").click(function () {
 
   after a digit reached, a normal operation like 2+3 = 5 can be done. Atm the line 1 displays 0
   prevent the excess of digits on line 2 when pushing the buttons
+  A small bug to correct when chained operation starts with /, the products are calculated first. In this case, the / or x should be calculated from left to right
 */
