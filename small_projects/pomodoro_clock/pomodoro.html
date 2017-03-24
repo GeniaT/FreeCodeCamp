@@ -5,37 +5,47 @@
 </head>
 <body>
   <h1>Pomodoro Clock</h1>
-  <div class="pomodoro">
-    <label>Pomodoro duration</label><br>
-    <select name="pomodoro_duration" id="pomodoro_duration">
-      <option value="5">5</option>
-      <option value="10">10</option>type="text/javascript">
-      <option value="15">15</option>
-      <option value="20">20</option>
-      <option value="25" selected="selected">25</option>
-      <option value="30">30</option>
-      <option value="40">40</option>
-      <option value="50">50</option>
-      <option value="60">60</option>
-    </select> mins
+  <div class="messageToUser"></div><br>
+  <div class="options_buttons">
+    <div class="pomodoro">
+      <label>Pomodoro duration</label><br>
+      <select name="pomodoro_duration" id="pomodoro_duration">
+        <option value="5">5</option>
+        <option value="10">10</option>type="text/javascript">
+        <option value="15">15</option>
+        <option value="20">20</option>
+        <option value="25" selected="selected">25</option>
+        <option value="30">30</option>
+        <option value="40">40</option>
+        <option value="50">50</option>
+        <option value="60">60</option>
+      </select> mins
+    </div>
+
+    <div class="break">
+      <label>Break duration</label><br>
+      <select name="break_duration" id="break_duration">
+        <option value="5" selected="selected">5</option>
+        <option value="10">10</option>
+        <option value="15">15</option>
+        <option value="20">20</option>
+        <option value="25">25</option>
+        <option value="30">30</option>
+      </select> mins
+    </div>
+
+    <button class="start_pause">Start/Pause</button><br>
+    <button class="reset">Reset All</button>
   </div>
 
-  <div class="break">
-    <label>Break duration</label><br>
-    <select name="break_duration" id="break_duration">
-      <option value="5" selected="selected">5</option>
-      <option value="10">10</option>
-      <option value="15">15</option>
-      <option value="20">20</option>
-      <option value="25">25</option>
-      <option value="30">30</option>
-    </select> mins
-  </div>
-
-  <button class="reset">Reset All</button>
-  <button class="start_pause">Start/Pause</button>
-  <div class="messageToUser"></div>
   <div class="timer"></div>
+
+  <div class="clock">
+    <div class="clock-face">
+      <div class="hand min-hand"></div>
+      <div class="hand second-hand"></div>
+    </div>
+  </div>
 
   <script src="pomodoro.js" type="text/javascript"></script>
 
