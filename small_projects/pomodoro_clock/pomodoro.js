@@ -2,6 +2,10 @@ var start; //will be passed on "on" or "off" when clicking on start/pause button
 var countdown; //Used globally to play with setInterval and clearInterval on start/pause button
 var timerValue;
 var mode;
+//for clock purpose variables
+const secondHand = document.querySelector('.second-hand');
+const minuteHand = document.querySelector('.min-hand');
+
 //Setting the timer according to the choice of Pomodoro duration
 function updateTimerAtInit() {
   var min = $('#pomodoro_duration').val();
@@ -15,6 +19,8 @@ function updateTimerAtInit() {
   }
 
   $('.timer').html(timerValue);
+  // and init of the clock accoring to the default pomodoro option
+  refreshClock();
 }
 
 function countDown() {
@@ -49,7 +55,7 @@ function countDown() {
 
         $('.timer').html(timerValue);
 
-        countdown = setInterval(countDown, 50);
+        countdown = setInterval(countDown, 1000);
       } else {
         timerValue = Number(timerValue[0]-1) + "9 : 59";
       }
@@ -98,7 +104,7 @@ $('.start_pause').on('click', function() { //Depending on if the timer state (ru
     clearInterval(countdown);
     start = "off";
   } else {
-    countdown = setInterval(countDown, 50);
+    countdown = setInterval(countDown, 1000);
     if (mode === undefined || mode === "work") {
       $('.messageToUser').html("Work Well !");
     } else {
@@ -107,9 +113,29 @@ $('.start_pause').on('click', function() { //Depending on if the timer state (ru
 
     start = "on";
   }
-
+  //test on clock refresh from HERE==============================
+  setInterval(refreshClock,1000);
 });
+
+//According to timerValue, we adapt the look of the clock
+
+
+
+function refreshClock() {
+
+  const seconds = Number(timerValue[5] + timerValue[6]);
+  const secondsDegrees = (seconds / 60) * 360 + 90;
+  secondHand.style.transform = `rotate(${secondsDegrees}deg)`;/*it's not quotes but ctrl+alt+7*/
+
+
+  //mins
+  const minutes = Number(timerValue[0] + timerValue[1]);
+  const minutesDegrees = (minutes / 60) * 360 + 90;
+  minuteHand.style.transform = `rotate(${minutesDegrees}deg)`;
+
+}
+
 /*
 to do next:
-  update the timer values via the countDown function, No bugs to correct at this time
+  Lock the option selection when the timer is running or in pause. Unlock only via reset button.
 */
