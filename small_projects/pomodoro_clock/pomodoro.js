@@ -11,7 +11,7 @@ function updateTimerAtInit() {
   var min = $('#pomodoro_duration').val();
   var sec = "00";
 
-  $('.messageToUser').html("Ready for Hustle Mode?");
+  $('.messageToUser').html("Are You Ready?");
   if (min > 5) { //Display 05:00 instead of 5:00
     timerValue = min + " : " + sec;
   } else {
@@ -48,7 +48,7 @@ function countDown() {
         }
 
         if (mode === "break") {
-          $('.messageToUser').html("BREAK TIME BABY !");
+          $('.messageToUser').html("Enjoy some rest...");
         } else if (mode === "work") {
           $('.messageToUser').html("Work Well!");
         }
@@ -73,6 +73,18 @@ function countDown() {
   $('.timer').html(timerValue);
 }
 
+//Disabling the select options when everything is not reset
+function disable() {
+  console.log("inside");
+  document.getElementById("pomodoro_duration").disabled=true;
+  document.getElementById("break_duration").disabled=true;
+}
+function enable() {
+  console.log("inside");
+  document.getElementById("pomodoro_duration").disabled=false;
+  document.getElementById("break_duration").disabled=false;
+}
+
 
  //takes the time by default
  updateTimerAtInit();
@@ -95,12 +107,14 @@ $('.reset').on('click', function() {
   start = "off";
   //update HTML with options selected
   updateTimerAtInit();
+  //unlocking the option selection during reset
+  enable();
 });
 
 $('.start_pause').on('click', function() { //Depending on if the timer state (running or in pause), we start/pause it and change it's state again.
   //var timer = $('.timer').html();
   if (start === "on") {
-    $('.messageToUser').html("I hope it's a Real Urgency !");
+    $('.messageToUser').html("The time never really stops...");
     clearInterval(countdown);
     start = "off";
   } else {
@@ -108,10 +122,11 @@ $('.start_pause').on('click', function() { //Depending on if the timer state (ru
     if (mode === undefined || mode === "work") {
       $('.messageToUser').html("Work Well !");
     } else {
-      $('.messageToUser').html("Enjoy your Break :) !");
+      $('.messageToUser').html("Enjoy some rest...");
     }
 
     start = "on";
+    disable();//we disable the option selection as the timer is started. enabling is only possible at reset.
   }
   //test on clock refresh from HERE==============================
   setInterval(refreshClock,1000);
@@ -134,8 +149,7 @@ function refreshClock() {
   minuteHand.style.transform = `rotate(${minutesDegrees}deg)`;
 
 }
-
 /*
-to do next:
-  Lock the option selection when the timer is running or in pause. Unlock only via reset button.
+Next to do:
+  work on resizing of the screen, clearing the buttons and options below the clock on certain sizes etc. 
 */
