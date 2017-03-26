@@ -1,0 +1,74 @@
+/* Extra small devices (phones, less than 768px) */
+/* No media query since this is the default in Bootstrap */
+/* Small devices (tablets, 768px and up) */
+@media (min-width: @screen-sm-min) { ... }
+/* Medium devices (desktops, 992px and up) */
+@media (min-width: @screen-md-min) { ... }
+/* Large devices (large desktops, 1200px and up) */
+@media (min-width: @screen-lg-min) { ... }
+
+body {
+    background-color: #49AAEB;
+    margin-top:5%;
+}
+
+h1 {
+  text-align:center;
+  padding-bottom: 100px;
+}
+
+/*
+.topQuotes, .quoteWindow, .row {
+  border:solid 1px black;
+}
+*/
+.top, h3, .delete {
+  margin: 25px;
+}
+
+.quoteWindow, .topQuotes, .buttons {
+  max-width: 500px;
+}
+
+ .signature {
+   text-align: center;
+   padding-top: 25px;
+ }
+
+.lead {
+  font-size:20px;
+}
+
+.newQuote {
+  float:right;
+}
+/* Trying to get the new quote centered with TOP2 OK */
+.column1 {
+  position:relative;
+}
+
+.quoteWindow { /*Aligned ok full screen but bug when window reduced*/
+  position:absolute;
+  margin-top:150px;
+  margin-left: 150px;
+}
+
+.topQuotes {
+  margin:auto;
+  padding-top:5px;
+  background:#85C3ED;
+  border-radius:10px;
+}
+
+.col-lg-6 {
+  /*background:green;*/
+  height:550px;
+}
+
+#apiQuote { /*To hide to quote before giving it a slow show method in jquery*/
+  display: none;
+}
+
+h3, h1, p, .signature {
+  color:white;
+}
