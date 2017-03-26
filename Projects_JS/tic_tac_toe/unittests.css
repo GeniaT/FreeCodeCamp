@@ -1,0 +1,9 @@
+
+
+.xo {
+  height:5em;
+  width:5em;
+  border:solid 2px black;
+  display:inline-block;
+  vertical-align: top;/*prevents the div moving down when adding html to the div*/
+}
