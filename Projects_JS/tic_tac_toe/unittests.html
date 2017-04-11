@@ -1,38 +1,53 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
   <head>
-    <link rel="stylesheet" type="text/css" href="unittests.css">
-    <!--<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="unittests.css">
+    <link rel="stylesheet" href="http://127.0.0.1/library/font-awesome-4.7.0/font-awesome-4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="http://127.0.0.1/library/animate.css/animate.css">
     <script src="http://127.0.0.1/freecodecamp/1.7.1_jquery.min.js"></script>
   </head>
   <body>
-    <h1>Tic Tac Toe ! </h1>
-    <p>Choose your weapon...</p>
-    <div>
-      <button class="userWeapon" id="x">X</button>
-      <button class="userWeapon" id="o">O</button><br>
-    </div>
-    <div class="points">
-      <h3>Score:</h3>
-      Player: <div class="userpoints">0</div>
-      Computer: <div class="comppoints">0</div>
-      Ties: <div class="ties">0</div>
-    </div><br>
-    <div class="grid">
-      <div class="grid-inner">
-        <div class="xo line1" id="0"></div>
-        <div class="xo line1" id="1"></div>
-        <div class="xo line1" id="2"></div><br>
-        <div class="xo line2" id="3"></div>
-        <div class="xo line2" id="4"></div>
-        <div class="xo line2" id="5"></div><br>
-        <div class="xo line3" id="6"></div>
-        <div class="xo line3" id="7"></div>
-        <div class="xo line3" id="8"></div>
+    <div class="global">
+    <header>
+      <h1>Tic Tac Toe ! </h1>
+      <div class="container">
+        <div class="weapon">Choose your weapon...&nbsp</div>
+        <div>
+          <button class="userWeapon" id="x">X</button>
+          <button class="userWeapon" id="o">O</button><br>
+        </div>
       </div>
-    </div>
+      <div class="scoreBoard">
+        <div class="scoreBoardChildren">Score:&nbsp</div>
+        <div class="scoreBoardChildren"><i class="fa fa-user" aria-hidden="true"></i> -&nbsp</div> <div class="scoreBoardChildren userpoints">0</div><div class="scoreBoardChildren">&nbsp&nbsp</div>
+        <div class="scoreBoardChildren"> <i class="fa fa-laptop" aria-hidden="true"></i> -&nbsp</div> <div class="scoreBoardChildren comppoints">0</div><div class="scoreBoardChildren">&nbsp&nbsp</div>
+        <div class="scoreBoardChildren"> <i class="fa fa-black-tie" aria-hidden="true"></i> -&nbsp</div> <div class="scoreBoardChildren ties">0</div>
+      </div>
+      <div class="endgameMessage"></div>
+      </header>
+      <main>
+      <div class="grid">
+        <div class="grid-inner">
+          <div class="xo line1" id="0"></div>
+          <div class="xo line1" id="1"></div>
+          <div class="xo line1" id="2"></div><br>
+          <div class="xo line2" id="3"></div>
+          <div class="xo line2" id="4"></div>
+          <div class="xo line2" id="5"></div><br>
+          <div class="xo line3" id="6"></div>
+          <div class="xo line3" id="7"></div>
+          <div class="xo line3" id="8"></div>
+        </div>
+      </div>
+    </main>
+    <footer>
+      <div class="signature">
+        <p>Designed and Coded by <a href="https://github.com/GeniaT" target="_blank">Genia</a></p>
+      </div>
+    </footer>
+  </div>
     <script src="unittests.js" type="text/javascript"></script>
   </body>
 </html>
-
-<!--

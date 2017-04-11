@@ -1,7 +1,9 @@
 body {
   font-family:Verdana;
   color:#e54b8e;
-  background:url('http://www.pixelstalk.net/wp-content/uploads/2016/09/Download-Free-Alice-in-Wonderland-Image.jpg');
+  background:url('http://www.pixelstalk.net/wp-content/uploads/2016/09/Download-Free-Alice-in-Wonderland-Image.jpg') no-repeat center center fixed;
+  /*background-position: center center;*/
+  background-size: cover;
 }
 
 /*clock css*/

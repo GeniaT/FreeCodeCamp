@@ -1,9 +1,74 @@
+body, html{
+    height: 100%;
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: #e3e9f2;
+}
 
+.global {
+  border:solid white 3px;
+  border-radius: 5px;
+  max-width: 23%;
+  min-width: 18em;
+  margin:auto;
+  margin-top: 110px;
+  background-color:#9de0ea;
+}
+h1 {
+  /*margin-top: 110px;*/
+}
+
+.grid-inner { /*container*/
+  display:-webkit-flex; /*webkit is the prefix used for safari only*/
+	display: flex;
+  height:16em;
+  width: 16em;
+  flex-wrap:wrap;
+  margin:auto;
+	justify-content: center;
+  align-items: center;
+}
 
 .xo {
-  height:5em;
-  width:5em;
-  border:solid 2px black;
-  display:inline-block;
-  vertical-align: top;/*prevents the div moving down when adding html to the div*/
+  height: 5em;
+  width: 5em;
+  margin: auto;
+  border:solid 1px black;
+  display: flex;
+	/* Center according to the main axis */
+	justify-content: center;
+	/* Center according to the secondary axis */
+  align-items: center;
+}
+
+h1, .signature, .endgameMessage {
+  text-align:center;
+}
+
+.signature a {
+  text-decoration:none;
+  color:#44a5f4;
+}
+
+.endgameMessage {
+  margin-bottom: 15px;
+  font-size: 25px;
+  color:#649bf4;
+}
+
+.scoreBoard, .container {
+  display:-webkit-flex; /*webkit is the prefix used for safari only*/
+	display: flex;
+  width: 100%;
+  flex-wrap:wrap;
+  margin:auto;
+  /* Center according to the main axis */
+	justify-content: center;
+
+	/* Center according to the secondary axis */
+  align-items: center;
+  margin-top:15px;
+}
+
+.scoreBoardChildren {
+  height: 2em;
 }

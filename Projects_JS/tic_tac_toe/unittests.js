@@ -25,7 +25,6 @@ function blockUsersMove () {
     for (var subArrItem = 0; subArrItem < 3; subArrItem++) {
       if (gameGrid[victoryIndexes[subArrToCheck][subArrItem]] === userWeapon) {
         riskOfUserVictory++;
-
         if (riskOfUserVictory === 2) { //if 2 divs on a line taken by user, we block it
           //now that the subArr to block is define, we look for the div to fill
           for (var i = 0; i < 3; i++) { //we go through each of 3 items from the detected array to find the empty one
@@ -38,10 +37,9 @@ function blockUsersMove () {
               freeIdsToChooseFrom = [];
               freeIds();
               whoseTurn = "user";
-              //return;
+              return;
             }
           }
-          //return;
         }
       }
     }
@@ -68,6 +66,12 @@ function checkIfCompCanWin () {
 
               whoseTurn = "noone";
               console.log("AI HAS WON!!!");
+              $(".endgameMessage").html("The Computer has Won!");
+              $('.endgameMessage').addClass('animated fadeOut');
+              setTimeout(function() {
+                $('.endgameMessage').removeClass('animated fadeOut');
+                $(".endgameMessage").html("");
+              }, 1000);
               var comppoints = Number($('.comppoints').html())+1;
               $('.comppoints').html(comppoints);
               setTimeout(function() {resetAfterGame();
@@ -91,10 +95,18 @@ function checkIfUserHasWon() {
         usersAlignedDivs++;
         if (usersAlignedDivs === 3) {
               console.log("USER HAS WON!!!");
+              $(".endgameMessage").html("You have won!");
+              $('.endgameMessage').addClass('animated fadeOut');
+              setTimeout(function() {
+                $('.endgameMessage').removeClass('animated fadeOut');
+                $(".endgameMessage").html("");
+              }, 1000);
+              whoseTurn = "none";
               var userpoints = Number($('.userpoints').html())+1;
               $('.userpoints').html(userpoints);
               setTimeout(function() {resetAfterGame();
               }, 3000);
+              return;
         }
       }
     }
@@ -159,6 +171,12 @@ function compMove() {
 
   if (gameGrid.indexOf(0) === -1) {
     console.log("this game is a TIE");
+    $(".endgameMessage").html("this game is a TIE");
+    $('.endgameMessage').addClass('animated fadeOut');
+    setTimeout(function() {
+      $('.endgameMessage').removeClass('animated fadeOut');
+      $(".endgameMessage").html("");
+    }, 1000);
     var ties = Number($('.ties').html())+1;
     $('.ties').html(ties);
     setTimeout(function() {resetAfterGame();
@@ -226,6 +244,13 @@ $('#o').on('click', function() {
 $('.xo').on('click', function() {
   if (userWeapon === "") {
     console.log("please choose your weapon first!");
+    $(".endgameMessage").html("Choose your sign first !");
+    $('.endgameMessage').addClass('animated fadeOut');
+    setTimeout(function() {
+      $('.endgameMessage').removeClass('animated fadeOut');
+      $(".endgameMessage").html("");
+    }, 1000);
+
   } else {
     if (whoseTurn === "user") {
       //detect the selected div ID & update html
@@ -247,6 +272,12 @@ $('.xo').on('click', function() {
 
         if (gameGrid.indexOf(0) === -1) {
           console.log("this game is a TIE");
+          $(".endgameMessage").html("this game is a TIE");
+          $('.endgameMessage').addClass('animated fadeOut');
+          setTimeout(function() {
+            $('.endgameMessage').removeClass('animated fadeOut');
+            $(".endgameMessage").html("");
+          }, 1000);
           var ties = Number($('.ties').html())+1;
           $('.ties').html(ties);
           setTimeout(function() {resetAfterGame();
@@ -259,7 +290,3 @@ $('.xo').on('click', function() {
     }
   }
 });
-
-/* to do next:
-  bug:
-*/
