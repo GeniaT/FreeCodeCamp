@@ -1,3 +1,10 @@
+.outterContainer {
+  position: relative;
+  height: 560px;
+  width: 560px;
+  margin:auto;
+}
+
 .container1, .container2 {
   display:flex;
   justify-content: center;
@@ -7,10 +14,10 @@
 
 .innerCircle {
   /* Part of the code to move the inner circle in the middle of the big one*/
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -105%);
+  position:absolute;
+  left: 22.5%;
+  top: 22.5%;
+  z-index:1;
 
 
   width:280px;
@@ -24,27 +31,87 @@
 .squareCircled {
   height: 250px;
   width: 250px;
-  border: 10px solid black;
+  border: 10px solid gray;
 }
 
 
 #a {
+  background-color:#01B600; /*green*/
   border-top-left-radius: 100%;
-  border-top:20px solid black;
-  border-left:20px solid black;
+  border-top:20px solid gray;
+  border-left:20px solid gray;
 }
 #b {
+  background-color:#BA2B00; /*red*/
   border-top-right-radius: 100%;
-  border-top:20px solid black;
-  border-right:20px solid black;
+  border-top:20px solid gray;
+  border-right:20px solid gray;
 }
 #c {
+  background-color:#F0C300; /*blue*/
   border-bottom-left-radius: 100%;
-  border-bottom:20px solid black;
-  border-left:20px solid black;
+  border-bottom:20px solid gray;
+  border-left:20px solid gray;
 }
 #d {
+  background-color:#005497; /*yellow*/
   border-bottom-right-radius: 100%;
-  border-bottom:20px solid black;
-  border-right:20px solid black;
+  border-bottom:20px solid gray;
+  border-right:20px solid gray;
+}
+
+/*TOGGLE CSS*/
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+}
+
+.switch input {display:none;}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+input:checked + .slider {
+  background-color: #2196F3;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #2196F3;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+}
+
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
 }
