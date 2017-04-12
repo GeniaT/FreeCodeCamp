@@ -1,0 +1,50 @@
+.container1, .container2 {
+  display:flex;
+  justify-content: center;
+  align-items: center;
+  margin:auto;
+}
+
+.innerCircle {
+  /* Part of the code to move the inner circle in the middle of the big one*/
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -105%);
+
+
+  width:280px;
+  height:280px;
+  border: 15px solid gray;
+  border-radius: 100%;
+  margin:auto;
+  background-color:white;
+}
+
+.squareCircled {
+  height: 250px;
+  width: 250px;
+  border: 10px solid black;
+}
+
+
+#a {
+  border-top-left-radius: 100%;
+  border-top:20px solid black;
+  border-left:20px solid black;
+}
+#b {
+  border-top-right-radius: 100%;
+  border-top:20px solid black;
+  border-right:20px solid black;
+}
+#c {
+  border-bottom-left-radius: 100%;
+  border-bottom:20px solid black;
+  border-left:20px solid black;
+}
+#d {
+  border-bottom-right-radius: 100%;
+  border-bottom:20px solid black;
+  border-right:20px solid black;
+}
