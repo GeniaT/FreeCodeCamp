@@ -80,10 +80,6 @@ body, html{
   margin:auto;
 }
 
-.strict, .level1, .level2 {
-  /*border:1px green solid;*/
-}
-
 .strict {
   border:3px black solid;
   border-radius:100%;
@@ -91,6 +87,10 @@ body, html{
   margin-left:69%;
   width: 8px;
   height: 8px;
+}
+
+#on {
+  background-color:red;
 }
 
 .level1 {
@@ -114,7 +114,7 @@ body, html{
   padding-top:5px;
   padding-bottom:-5px;
   font-size:25px;
-  color:white;
+  color:red;
 }
 
 .startButton, .strictButton {
@@ -123,6 +123,7 @@ body, html{
   border:3px black solid;
   border-radius:100%;
   margin-right:9%;
+  cursor: pointer;
 }
 
 .startButton {
@@ -163,43 +164,48 @@ body, html{
   width: 250px;
   border: 10px solid gray;
 }
-#a {
+.green {
   background-color:#01B600; /*green*/
   border-top-left-radius: 100%;
   border-top:20px solid gray;
   border-left:20px solid gray;
+
 }
-#b {
+.red {
   background-color:#BA2B00; /*red*/
   border-top-right-radius: 100%;
   border-top:20px solid gray;
   border-right:20px solid gray;
+  cursor: pointer;
 }
-#c {
-  background-color:#F0C300; /*blue*/
+.blue {
+  background-color:#005497; /*blue*/
   border-bottom-left-radius: 100%;
   border-bottom:20px solid gray;
   border-left:20px solid gray;
+  cursor: pointer;
 }
-#d {
-  background-color:#005497; /*yellow*/
+.yellow {
+  background-color:#F0C300; /*yellow*/
   border-bottom-right-radius: 100%;
   border-bottom:20px solid gray;
   border-right:20px solid gray;
+  cursor: pointer;
 }
 
-#a:active {
+.green:active, #green {
   background-color:#00F04B;
 }
-#b:active {
+.red:active, #red {
   background-color:#FF0033;
 }
-#c:active {
-  background-color:#FFFF99;
-}
-#d:active {
+.blue:active, #blue {
   background-color:#66CCFF;
 }
+.yellow:active, #yellow {
+  background-color:#FFFF99;
+}
+
 
 
 
