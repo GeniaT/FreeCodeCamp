@@ -169,7 +169,7 @@ body, html{
   border-top-left-radius: 100%;
   border-top:20px solid gray;
   border-left:20px solid gray;
-
+  cursor: pointer;
 }
 .red {
   background-color:#BA2B00; /*red*/

@@ -1,0 +1,60 @@
+<!--
+One set, one clearTimeout
+2 set, 2 cleartimeouts
+for loop + 1 set + clearTimeout
+for loop + 2 sets + 2 clearTimeout
+-->
+
+<!DOCTYPE html>
+<html>
+<body>
+
+<p>A script on this page starts this clock:</p>
+
+<p id="demo"></p>
+<p id="demo2"></p>
+
+<button onclick="clearing()">Stop timer1</button>
+<button onclick="stopFunction()">Stop counter</button>
+
+<script>
+var myVar = setTimeout(myTimer ,2000);
+var myVar2 = setTimeout(myTimer2, 4000);
+var clearMe = [];
+function myTimer() {
+    var d = new Date();
+    document.getElementById("demo").innerHTML = "timer1: " + d.toLocaleTimeString();
+}
+
+function myTimer2() {
+    var d = new Date();
+    document.getElementById("demo2").innerHTML = "timer2: " + d.toLocaleTimeString();
+}
+
+//works for non for loop cases
+function clearing() {
+  clearTimeout(myVar);
+  clearTimeout(myVar2);
+}
+
+//works, to keep:
+function countI(i) {
+   clearMe.push(setTimeout(function() {
+    console.log(i);
+  }, i*1000));
+}
+
+for (var i = 0; i < 99; i++) {
+  countI(i);
+}
+
+function stopFunction() {
+  clearMe.forEach(function(timer){
+    clearTimeout(timer);
+  });
+}
+
+</script>
+
+</body>
+</html>
