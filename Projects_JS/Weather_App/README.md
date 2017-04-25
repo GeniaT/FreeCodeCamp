@@ -6,6 +6,7 @@ Check the Weather app and its code over there: https://codepen.io/Genia/pen/EgGV
 For the whole Portfolio, just check http://codepen.io/Genia
 
 Update 25/4/17
+
 With time, there is now a regression occuring because of the "http&https". 
 The app uses 2 apis: Google for Geolocalisation and apiopenweather for the weather predictions. 
 
